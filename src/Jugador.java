@@ -5,9 +5,13 @@ public class Jugador {
 	private boolean esTurno = false;
 	private int cantReyes;
 	private int puntos = 0;
+
 	public int getPuntos() {
 		return puntos;
 	}
 	
-	
+	public void setTurno(boolean val) {
+		this.esTurno = val;
+	}
+
 }
