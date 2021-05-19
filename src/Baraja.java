@@ -5,20 +5,29 @@ import java.util.Random;
 
 public class Baraja {
 
-	private int cantDominos;
+	private int cantDominos = 48;
+	private int dominosRepartidos;
 	private List<Domino> dominos = new ArrayList<Domino>();
 
 	public void mezclar() {
 		Random rndm = new Random();
 		Collections.shuffle(dominos, rndm);
+
+		this.dominosRepartidos = 0;
 	}
 
 	public List<Domino> repartir() {
+
+		if (this.cantDominos - this.dominosRepartidos == 0)
+			return null;
+
 		List<Domino> salida = new ArrayList<Domino>();
 		int cantDominos = 4;
-		for (int i = 0; i < cantDominos; i++) {
+		for (int i = this.dominosRepartidos; i < this.dominosRepartidos + cantDominos; i++) {
 			salida.add(this.dominos.get(i));
 		}
+
+		this.dominosRepartidos += cantDominos;
 
 		return salida;
 	}
@@ -195,7 +204,6 @@ public class Baraja {
 		Domino dom33 = new Domino(elemMinaCorona, elemPastizal);
 		dominos.add(dom33);
 
-		
 		mezclar();
 	}
 

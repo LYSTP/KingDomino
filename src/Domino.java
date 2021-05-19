@@ -1,36 +1,36 @@
 
 public class Domino {
-	
-	private Elemento elemIzq;
-	private Elemento elemDer;
+
+	private Elemento elemIzquierdo;
+	private Elemento elemDerecho;
 	private boolean tieneRey;
 	private int numero;
-	
-	
-	public Domino(Elemento elemIzq, Elemento elemDer) {
-		this.elemIzq = elemIzq;
-		this.elemDer = elemDer;
-	}
 
+	public Domino(Elemento elemIzquierdo, Elemento elemDerecho) {
+		this.elemIzquierdo = elemIzquierdo;
+		this.elemDerecho = elemDerecho;
+
+		this.elemDerecho.asignarElemIzq(elemIzquierdo);
+		this.elemIzquierdo.asignarElemDer(elemDerecho);
+	}
 
 	public boolean puedenUnir(Domino domino) {
 		boolean sal = false;
-		
-		if (this.elemDer.compareTo(domino.elemDer) == 0)
+
+		if (this.elemDerecho.compareTo(domino.elemDerecho) == 0)
 			sal = true;
-		if (this.elemDer.compareTo(domino.elemIzq) == 0)
+		if (this.elemDerecho.compareTo(domino.elemIzquierdo) == 0)
 			sal = true;
-		if (this.elemIzq.compareTo(domino.elemDer) == 0)
+		if (this.elemIzquierdo.compareTo(domino.elemDerecho) == 0)
 			sal = true;
-		if (this.elemIzq.compareTo(domino.elemIzq) == 0)
+		if (this.elemIzquierdo.compareTo(domino.elemIzquierdo) == 0)
 			sal = true;
-		
-		
+
 		return sal;
 	}
-	
+
 	@Override
 	public String toString() {
-		return elemDer.toString() + " + " + elemIzq.toString();
+		return elemIzquierdo.toString() + " + " + elemDerecho.toString();
 	}
 }
