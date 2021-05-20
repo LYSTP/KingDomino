@@ -14,6 +14,11 @@ public class Domino {
 		this.elemIzquierdo.asignarElemDer(elemDerecho);
 	}
 
+	public Domino(Elemento castillo) {
+		this.elemIzquierdo = castillo;
+		this.elemDerecho = elemIzquierdo;
+	}
+
 	public boolean puedenUnir(Domino domino) {
 		boolean sal = false;
 
@@ -27,6 +32,14 @@ public class Domino {
 			sal = true;
 
 		return sal;
+	}
+	
+	public Elemento getElemIzquierdo() {
+		return elemIzquierdo;
+	}
+	
+	public Elemento getElemDerecho() {
+		return elemDerecho;
 	}
 
 	@Override

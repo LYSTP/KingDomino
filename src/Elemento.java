@@ -83,11 +83,22 @@ public class Elemento implements Comparable<Elemento> {
 
 	@Override
 	public int compareTo(Elemento elemento) {
+		if (this.descripcion.equals("Castillo"))
+			return 0;
+		
 		return this.descripcion.compareTo(elemento.descripcion);
 	}
 
 	@Override
 	public String toString() {
 		return descripcion;
+	}
+
+	public boolean tieneCorona() {
+		return this.coronas != 0;
+	}
+	
+	public int getCoronas() {
+		return coronas;
 	}
 }
