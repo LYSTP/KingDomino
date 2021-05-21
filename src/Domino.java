@@ -3,14 +3,14 @@ public class Domino {
 
 	private Elemento elemIzquierdo;
 	private Elemento elemDerecho;
-	private boolean tieneRey;
-	private int numero;
+	private boolean tieneRey; // para una parte mas avanzada del proyecto
+	private int numero;		//idem anterior
 
-	public Domino(Elemento elemIzquierdo, Elemento elemDerecho) {
-		this.elemIzquierdo = elemIzquierdo;
+	public Domino(Elemento elemIzquierdo, Elemento elemDerecho) { 
+		this.elemIzquierdo = elemIzquierdo;// se forman los dominos combinados
 		this.elemDerecho = elemDerecho;
 
-		this.elemDerecho.asignarElemIzq(elemIzquierdo);
+		this.elemDerecho.asignarElemIzq(elemIzquierdo);// llena el lado ocupado de cada elemento.
 		this.elemIzquierdo.asignarElemDer(elemDerecho);
 	}
 

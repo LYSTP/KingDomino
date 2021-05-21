@@ -18,18 +18,18 @@ public class Baraja {
 
 	public List<Domino> repartir() {
 
-		if (this.cantDominos - this.dominosRepartidos == 0)
-			return null;
+		if (this.cantDominos - this.dominosRepartidos == 0)//si los dominos de la baraja = dominos repartidos
+			return null;									// no reparte
 
 		List<Domino> salida = new ArrayList<Domino>();
-		int cantDominos = 4;
+		int cantDominos = 4;	//se reparten 4 dominos en la mesa
 		for (int i = this.dominosRepartidos; i < this.dominosRepartidos + cantDominos; i++) {
-			salida.add(this.dominos.get(i));
+			salida.add(this.dominos.get(i));	//reparte segun cantidad de jugadores // 
 		}
 
 		this.dominosRepartidos += cantDominos;
 
-		return salida;
+		return salida; // retorna las fichas que pudo repartir
 	}
 
 	public Baraja() {
@@ -204,7 +204,7 @@ public class Baraja {
 		Domino dom33 = new Domino(elemMinaCorona, elemPastizal);
 		dominos.add(dom33);
 
-		mezclar();
+		mezclar();//ok
 	}
 
 }

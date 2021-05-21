@@ -6,6 +6,7 @@ public class Juego {
 	private Jugador JugadorEnTurno;
 	private List<Jugador> jugadores = new ArrayList<Jugador>();
 	private boolean juegoActivo;
+	private List<Sala> salas = new ArrayList<Sala>();
 
 	public Juego(Jugador jugador1, Jugador jugador2) {
 		jugadores.add(jugador1);
@@ -25,7 +26,7 @@ public class Juego {
 		setTurno(jugador1);
 		JugadorEnTurno = jugador1;
 	}
-	public Juego(Jugador jugador1, Jugador jugador2, Jugador jugador3, Jugador jugador4) {
+	public Juego(Jugador jugador1, Jugador jugador2, Jugador jugador3, Jugador jugador4) {// se va a quitar
 		jugadores.add(jugador1);
 		jugadores.add(jugador2);
 		jugadores.add(jugador3);
@@ -42,6 +43,10 @@ public class Juego {
 		JugadorEnTurno = this.jugadores.get(0);
 	}
 	
+	public Juego(Sala sala) {
+		salas.add(sala);
+	}
+
 	private void setJugadores(List<Jugador> jugadores) {
 		this.jugadores = jugadores;
 	}
@@ -57,5 +62,6 @@ public class Juego {
 				jug.setTurno(false);
 		}
 	}
-
+	
+	
 }
