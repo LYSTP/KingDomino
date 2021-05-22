@@ -1,10 +1,11 @@
 package clases;
+
 import java.util.LinkedList;
 import java.util.List;
 
 public class Tablero {
 
-	/*private List<Territorio> territorios;
+	private List<Territorio> territorios;
 
 	Domino castillo;
 
@@ -21,8 +22,7 @@ public class Tablero {
 	}
 
 	private void agregar(Domino dominoNuevo) {
-		// TODO
-	}*/
-	
-	
+
+	}
+
 }
