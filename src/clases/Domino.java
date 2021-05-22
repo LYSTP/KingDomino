@@ -23,10 +23,6 @@ public class Domino implements Comparable<Domino> {
 	public boolean puedenUnir(Domino domino) {
 		boolean sal = false;
 
-		if (this.elemIzquierdo.getDescripcion().equals("Castillo"))
-			sal = true;
-		if (domino.elemIzquierdo.getDescripcion().equals("Castillo"))
-			sal = true;
 		if (this.elemDerecho.compareTo(domino.elemDerecho) == 0)
 			sal = true;
 		if (this.elemDerecho.compareTo(domino.elemIzquierdo) == 0)

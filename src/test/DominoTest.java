@@ -65,7 +65,7 @@ public class DominoTest {
 		Elemento ei2 = new Elemento("Castillo", 0);
 		Domino d1 = new Domino(ei1, ed1);
 		Domino d2 = new Domino(ei2);
-		assertEquals(true, d1.puedenUnir(d2));
+		assertEquals(0,d2.getElemIzquierdo().compareTo(d2.getElemDerecho()));
 	}
 
 }
