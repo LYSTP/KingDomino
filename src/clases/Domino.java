@@ -1,12 +1,13 @@
+package clases;
 
-public class Domino {
+public class Domino implements Comparable<Domino> {
 
 	private Elemento elemIzquierdo;
 	private Elemento elemDerecho;
 	private boolean tieneRey; // para una parte mas avanzada del proyecto
-	private int numero;		//idem anterior
+	private int numero;
 
-	public Domino(Elemento elemIzquierdo, Elemento elemDerecho) { 
+	public Domino(Elemento elemIzquierdo, Elemento elemDerecho) {
 		this.elemIzquierdo = elemIzquierdo;// se forman los dominos combinados
 		this.elemDerecho = elemDerecho;
 
@@ -33,17 +34,30 @@ public class Domino {
 
 		return sal;
 	}
-	
+
 	public Elemento getElemIzquierdo() {
 		return elemIzquierdo;
 	}
-	
+
 	public Elemento getElemDerecho() {
 		return elemDerecho;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 
 	@Override
 	public String toString() {
 		return elemIzquierdo.toString() + " + " + elemDerecho.toString();
+	}
+
+	@Override
+	public int compareTo(Domino o) {
+		return this.numero - o.getNumero();
 	}
 }

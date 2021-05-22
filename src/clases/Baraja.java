@@ -1,3 +1,5 @@
+package clases;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,18 +20,20 @@ public class Baraja {
 
 	public List<Domino> repartir() {
 
-		if (this.cantDominos - this.dominosRepartidos == 0)//si los dominos de la baraja = dominos repartidos
-			return null;									// no reparte
+		if (this.cantDominos - this.dominosRepartidos == 0)// si los dominos de la baraja = dominos repartidos
+			return null; // no reparte
 
 		List<Domino> salida = new ArrayList<Domino>();
-		int cantDominos = 4;	//se reparten 4 dominos en la mesa
+		int cantDominos = 4; // se reparten 4 dominos en la mesa
 		for (int i = this.dominosRepartidos; i < this.dominosRepartidos + cantDominos; i++) {
-			salida.add(this.dominos.get(i));	//reparte segun cantidad de jugadores // 
+			salida.add(this.dominos.get(i));
 		}
 
 		this.dominosRepartidos += cantDominos;
 
-		return salida; // retorna las fichas que pudo repartir
+		Collections.sort(salida);
+		return salida;
+		// retorna las fichas que pudo repartir
 	}
 
 	public Baraja() {
@@ -204,7 +208,21 @@ public class Baraja {
 		Domino dom33 = new Domino(elemMinaCorona, elemPastizal);
 		dominos.add(dom33);
 
-		mezclar();//ok
+		int i = 1;
+		for (Domino domino : dominos) {
+			domino.setNumero(i);
+			i++;
+		}
+
+		mezclar();// ok
+	}
+
+	public int getSizeDominos() {
+		return this.dominos.size();
+	}
+
+	public List<Domino> getMazo() {
+		return dominos;
 	}
 
 }
