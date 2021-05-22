@@ -27,6 +27,10 @@ public class GestionJuego {
 		return true;
 	}
 
+	public int obtenerGanador() {
+		return 1;
+	}
+
 	public List<Jugador> getJugadores() {
 		return jugadores;
 	}
