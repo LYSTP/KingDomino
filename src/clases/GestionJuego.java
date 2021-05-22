@@ -1,18 +1,39 @@
 package clases;
 
+import java.util.List;
+
 public class GestionJuego {
-	
-	public static void main(String[] args) {
-		Jugador j1 = new Jugador(1,"Jose");
-		Jugador j2 = new Jugador(2,"Juan");
-		
-		Sala sala = new Sala("Duelo 2vs2", j1);
-		sala.agregarJugador(j2);
-				
-		Juego juego = new Juego(sala);
-		
-		
+
+	List<Jugador> jugadores;
+	Jugador jugadorEnTurno;
+	Baraja baraja;
+
+	public GestionJuego(List<Jugador> jugadores) {
+		this.jugadores = jugadores;
+		this.baraja = new Baraja();
+		this.jugadorEnTurno = jugadores.get(0);
 	}
-	
-	
+
+	public boolean quitarJugador(Jugador j) {
+		for (Jugador jugador : this.jugadores) {
+			if (jugador.getId() == j.getId()) {
+				this.jugadores.remove(jugador.getId());
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public List<Domino> darMano(int turno) {
+		return this.baraja.repartir();
+	}
+
+	public boolean iniciarPartida() {
+		return true;
+	}
+
+	public List<Jugador> getJugadores() {
+		return jugadores;
+	}
+
 }
