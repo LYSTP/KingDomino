@@ -25,4 +25,6 @@ public class Territorio {
 
 		return cantCoronas * this.elementos.size();
 	}
+	
+	//
 }
