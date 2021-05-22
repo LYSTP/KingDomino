@@ -8,6 +8,15 @@ public class Elemento implements Comparable<Elemento> {
 	private Elemento elemIzquierda;
 	private Elemento elemDerecha;
 	private Elemento elemArriba;
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 	private Elemento elemAbajo;
 
 	public Elemento(String descripcion, int coronas) {
