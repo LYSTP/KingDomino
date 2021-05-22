@@ -1,3 +1,4 @@
+package clases;
 
 public class Elemento implements Comparable<Elemento> {
 
@@ -12,7 +13,6 @@ public class Elemento implements Comparable<Elemento> {
 	public Elemento(String descripcion, int coronas) {
 		this.descripcion = descripcion;
 		this.coronas = coronas;
-
 		this.elemAbajo = null;
 		this.elemDerecha = null;
 		this.elemIzquierda = null;
@@ -85,7 +85,7 @@ public class Elemento implements Comparable<Elemento> {
 	public int compareTo(Elemento elemento) {
 		if (this.descripcion.equals("Castillo"))
 			return 0;
-		
+
 		return this.descripcion.compareTo(elemento.descripcion);
 	}
 
@@ -97,7 +97,7 @@ public class Elemento implements Comparable<Elemento> {
 	public boolean tieneCorona() {
 		return this.coronas != 0;
 	}
-	
+
 	public int getCoronas() {
 		return coronas;
 	}
