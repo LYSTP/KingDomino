@@ -23,7 +23,7 @@ public class BarajaTest {
 		int numeroPrimerDomino = b.getMazo().get(0).getNumero();
 		b.mezclar();
 		assertNotEquals(numeroPrimerDomino, b.getMazo().get(0).getNumero());
-	}
+	}//puede pasar que justo te toca de nuevo la primera carta
 
 	@Test
 	public void testRepartirBaraja() {

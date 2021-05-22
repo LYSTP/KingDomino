@@ -92,7 +92,7 @@ public class Elemento implements Comparable<Elemento> {
 
 	@Override
 	public int compareTo(Elemento elemento) {
-		if (this.descripcion.equals("Castillo"))
+		if (elemento.getDescripcion().equals("Castillo"))
 			return 0;
 
 		return this.descripcion.compareTo(elemento.descripcion);

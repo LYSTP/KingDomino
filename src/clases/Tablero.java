@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Tablero {
 
-	private List<Territorio> territorios;
+	private List<Territorio> territorios; 
+	// pensamos hacer una lista de territorios de elementos para no usar una matriz
 
 	Domino castillo;
 
