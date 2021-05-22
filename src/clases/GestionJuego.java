@@ -15,13 +15,8 @@ public class GestionJuego {
 	}
 
 	public boolean quitarJugador(Jugador j) {
-		for (Jugador jugador : this.jugadores) {
-			if (jugador.getId() == j.getId()) {
-				this.jugadores.remove(jugador.getId());
-				return true;
-			}
-		}
-		return false;
+		this.jugadores.remove(j.getId());
+		return true;
 	}
 
 	public List<Domino> darMano(int turno) {
@@ -34,6 +29,10 @@ public class GestionJuego {
 
 	public List<Jugador> getJugadores() {
 		return jugadores;
+	}
+
+	public Baraja getBaraja() {
+		return this.baraja;
 	}
 
 }
