@@ -22,13 +22,13 @@ public class BarajaTest {
 		Baraja b = new Baraja();
 		int numeroPrimerDomino = b.getMazo().get(0).getNumero();
 		b.mezclar();
-		assertNotEquals(numeroPrimerDomino, b.getMazo().get(0).getNumero());
+		assertNotEquals(numeroPrimerDomino, b.getMazo().get(0).getNumero());//podemos comparar todas las cartas
 	}//puede pasar que justo te toca de nuevo la primera carta
 
 	@Test
 	public void testRepartirBaraja() {
 		Baraja b = new Baraja();
 		List<Domino> l = b.repartir();
-		assertEquals(4, l.size());
+		assertEquals(4, l.size());//podemos probar 44 en dominos
 	}
 }
