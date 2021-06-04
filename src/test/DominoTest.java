@@ -6,31 +6,32 @@ import org.junit.Test;
 
 import clases.Domino;
 import clases.Elemento;
+import clases.Elemento.tiposElementos;
 
 public class DominoTest {
 
 	@Test
 	public void testCrearDomino() {
-		Elemento ei = new Elemento("Agua", 0);
-		Elemento ed = new Elemento("Bosque", 0);
+		Elemento ei = new Elemento(tiposElementos.AGUA, 0);
+		Elemento ed = new Elemento(tiposElementos.BOSQUE, 0);
 		Domino d = new Domino(ei, ed);
 
-		assertEquals("Agua", d.getElemIzquierdo().getDescripcion());
-		assertEquals("Bosque", d.getElemDerecho().getDescripcion());
+		assertEquals(tiposElementos.AGUA.toString(), d.getElemIzquierdo().getDescripcion());
+		assertEquals(tiposElementos.BOSQUE.toString(), d.getElemDerecho().getDescripcion());
 	}
 
 	@Test
 	public void testCrearDominoConCastillo() {
-		Elemento e = new Elemento("Castillo", 0);
+		Elemento e = new Elemento(tiposElementos.CASTILLO, 0);
 		Domino d = new Domino(e);
-		assertEquals("Castillo", d.getElemIzquierdo().getDescripcion());
-		assertEquals("Castillo", d.getElemDerecho().getDescripcion());
+		assertEquals(tiposElementos.CASTILLO.toString(), d.getElemIzquierdo().getDescripcion());
+		assertEquals(tiposElementos.CASTILLO.toString(), d.getElemDerecho().getDescripcion());
 	}
 
 	@Test
 	public void testCrearDominoConCorona() {
-		Elemento ei = new Elemento("Agua", 1);
-		Elemento ed = new Elemento("Bosque", 0);
+		Elemento ei = new Elemento(tiposElementos.AGUA, 1);
+		Elemento ed = new Elemento(tiposElementos.BOSQUE, 0);
 		Domino d = new Domino(ei, ed);
 		assertEquals(1, d.getElemIzquierdo().getCoronas());
 		assertEquals(0, d.getElemDerecho().getCoronas());
@@ -38,34 +39,34 @@ public class DominoTest {
 
 	@Test
 	public void testSePuedeUnirDominos() {
-		Elemento ei1 = new Elemento("Agua", 0);
-		Elemento ed1 = new Elemento("Bosque", 0);
-		Elemento ei2 = new Elemento("Agua", 0);
-		Elemento ed2 = new Elemento("Pastizal", 0);
+		Elemento ei1 = new Elemento(tiposElementos.AGUA, 0);
+		Elemento ed1 = new Elemento(tiposElementos.BOSQUE, 0);
+		Elemento ei2 = new Elemento(tiposElementos.AGUA, 0);
+		Elemento ed2 = new Elemento(tiposElementos.PASTIZAL, 0);
 		Domino d1 = new Domino(ei1, ed1);
 		Domino d2 = new Domino(ei2, ed2);
 		assertEquals(true, d1.puedenUnir(d2));
 	}
-	
+
 	@Test
 	public void testNoSePuedeUnirDominos() {
-		Elemento ei1 = new Elemento("Agua", 0);
-		Elemento ed1 = new Elemento("Bosque", 0);
-		Elemento ei2 = new Elemento("Pastizal", 0);
-		Elemento ed2 = new Elemento("Pastizal", 0);
+		Elemento ei1 = new Elemento(tiposElementos.AGUA, 0);
+		Elemento ed1 = new Elemento(tiposElementos.BOSQUE, 0);
+		Elemento ei2 = new Elemento(tiposElementos.PASTIZAL, 0);
+		Elemento ed2 = new Elemento(tiposElementos.PASTIZAL, 0);
 		Domino d1 = new Domino(ei1, ed1);
 		Domino d2 = new Domino(ei2, ed2);
 		assertEquals(false, d1.puedenUnir(d2));
 	}
-	
+
 	@Test
 	public void testPuedeUnirDominosPorCastillo() {
-		Elemento ei1 = new Elemento("Agua", 0);
-		Elemento ed1 = new Elemento("Bosque", 0);
-		Elemento ei2 = new Elemento("Castillo", 0);
+		Elemento ei1 = new Elemento(tiposElementos.AGUA, 0);
+		Elemento ed1 = new Elemento(tiposElementos.BOSQUE, 0);
+		Elemento ei2 = new Elemento(tiposElementos.CASTILLO, 0);
 		Domino d1 = new Domino(ei1, ed1);
 		Domino d2 = new Domino(ei2);
-		assertEquals(0,d1.getElemIzquierdo().compareTo(d2.getElemIzquierdo()));
+		assertEquals(0, d1.getElemIzquierdo().compareTo(d2.getElemIzquierdo()));
 	}
 
 }

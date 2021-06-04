@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import clases.Elemento.tiposElementos;
+
 public class Baraja {
 
 	private int cantDominos = 48;
@@ -37,28 +39,28 @@ public class Baraja {
 	}
 
 	public Baraja() {
-		Elemento elemCesped = new Elemento("Cesped", 0);
-		Elemento elemTierra = new Elemento("Tierra", 0);
-		Elemento elemAgua = new Elemento("Agua", 0);
-		Elemento elemBosque = new Elemento("Bosque", 0);
-		Elemento elemPastizal = new Elemento("Pastizal", 0);
-		Elemento elemMina = new Elemento("Mina", 0);
+		Elemento elemCesped = new Elemento(tiposElementos.CESPED, 0);
+		Elemento elemTierra = new Elemento(tiposElementos.TIERRA, 0);
+		Elemento elemAgua = new Elemento(tiposElementos.AGUA, 0);
+		Elemento elemBosque = new Elemento(tiposElementos.BOSQUE, 0);
+		Elemento elemPastizal = new Elemento(tiposElementos.PASTIZAL, 0);
+		Elemento elemMina = new Elemento(tiposElementos.MINA, 0);
 
 		// Con 1 corona
-		Elemento elemPastizalCorona = new Elemento("Pastizal", 1);
-		Elemento elemBosqueCorona = new Elemento("Bosque", 1);
-		Elemento elemAguaCorona = new Elemento("Agua", 1);
-		Elemento elemCespedCorona = new Elemento("Cesped", 1);
-		Elemento elemTierraCorona = new Elemento("Corona", 1);
-		Elemento elemMinaCorona = new Elemento("Mina", 1);
+		Elemento elemPastizalCorona = new Elemento(tiposElementos.PASTIZAL, 1);
+		Elemento elemBosqueCorona = new Elemento(tiposElementos.BOSQUE, 1);
+		Elemento elemAguaCorona = new Elemento(tiposElementos.AGUA, 1);
+		Elemento elemCespedCorona = new Elemento(tiposElementos.CESPED, 1);
+		Elemento elemTierraCorona = new Elemento(tiposElementos.CORONA, 1);
+		Elemento elemMinaCorona = new Elemento(tiposElementos.MINA, 1);
 
 		// con 2 coronas
-		Elemento elemTierraCorona2 = new Elemento("Tierra", 2);
-		Elemento elemCespedCorona2 = new Elemento("Cesped", 2);
-		Elemento elemMinaCorona2 = new Elemento("Mina", 2);
+		Elemento elemTierraCorona2 = new Elemento(tiposElementos.TIERRA, 2);
+		Elemento elemCespedCorona2 = new Elemento(tiposElementos.CESPED, 2);
+		Elemento elemMinaCorona2 = new Elemento(tiposElementos.MINA, 2);
 
 		// 3 coronas
-		Elemento elemMinaCorona3 = new Elemento("Mina", 3);
+		Elemento elemMinaCorona3 = new Elemento(tiposElementos.MINA, 3);
 
 		// Solo agua
 		Domino dom1 = new Domino(elemAgua, elemAgua);
