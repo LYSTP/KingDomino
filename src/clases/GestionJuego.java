@@ -1,5 +1,6 @@
 package clases;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class GestionJuego {
@@ -7,10 +8,12 @@ public class GestionJuego {
 	List<Jugador> jugadores;
 	Jugador jugadorEnTurno;
 	Baraja baraja;
-
-	public GestionJuego(List<Jugador> jugadores) {
+	
+	
+	public GestionJuego(List<Jugador> jugadores,String path) throws FileNotFoundException {
 		this.jugadores = jugadores;
-		this.baraja = new Baraja();
+		Archivo a =new Archivo();
+		this.baraja=a.leerArchivo(path);
 		this.jugadorEnTurno = jugadores.get(0);
 	}
 

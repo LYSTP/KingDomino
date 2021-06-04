@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Baraja {
 
-	private int cantDominos = 48;
+	private int cantDominos;
 	private int dominosRepartidos;
 	private List<Domino> dominos = new ArrayList<Domino>();
 
@@ -17,7 +17,11 @@ public class Baraja {
 
 		this.dominosRepartidos = 0;
 	}
-
+	public Baraja(int cant,ArrayList<Domino> dom) {
+		this.cantDominos=cant;
+		this.dominos=dom;
+		mezclar();
+	}
 	public List<Domino> repartir() {
 
 		if (this.cantDominos - this.dominosRepartidos == 0)// si los dominos de la baraja = dominos repartidos
@@ -35,8 +39,9 @@ public class Baraja {
 		return salida;
 		// retorna las fichas que pudo repartir
 	}
-
+	/*
 	public Baraja() {
+		
 		Elemento elemCesped = new Elemento("Cesped", 0);
 		Elemento elemTierra = new Elemento("Tierra", 0);
 		Elemento elemAgua = new Elemento("Agua", 0);
@@ -213,9 +218,11 @@ public class Baraja {
 			domino.setNumero(i);
 			i++;
 		}
+		
 
 		mezclar();// ok
 	}
+	*/
 
 	public int getSizeDominos() {
 		return this.dominos.size();
@@ -224,5 +231,5 @@ public class Baraja {
 	public List<Domino> getMazo() {
 		return dominos;
 	}
-
+	
 }
