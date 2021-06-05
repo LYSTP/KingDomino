@@ -1,16 +1,22 @@
 package clases;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class GestionJuego {
 
 	List<Jugador> jugadores;
 	Jugador jugadorEnTurno;
 	Baraja baraja;
+	boolean primerTurno = true;
 
 	public GestionJuego(List<Jugador> jugadores) {
 		this.jugadores = jugadores;
-		this.baraja = new Baraja();
+		Archivo a = new Archivo();
+		this.baraja = a.leerArchivo("EntradaMazo/baraja.in");
 		this.jugadorEnTurno = jugadores.get(0);
 	}
 
@@ -19,12 +25,32 @@ public class GestionJuego {
 		return true;
 	}
 
-	public List<Domino> darMano(int turno) {
-		return this.baraja.repartir();
+	public void iniciarPartida() {
+		if (jugadores.size() >= 2 && jugadores.size() <= 4) {
+
+			while (!baraja.getBaraja().isEmpty()) {
+				ordenarJugadores();
+				Ronda.nuevaRonda(jugadores, baraja.repartir());
+			}
+			//finaliza la partida
+			obtenerGanador();
+		} else
+			System.out.println("Cantidad de jugadores no valida.");
 	}
 
-	public boolean iniciarPartida() {
-		return true;
+	public void ordenarJugadores() {
+		if (primerTurno) {
+			Collections.shuffle(jugadores);
+			primerTurno = false;
+		} else {
+			Collections.sort(jugadores, (j1, j2) -> {
+				return j1.getDominoSeleccionado().getNumero().compareTo(j2.getDominoSeleccionado().getNumero());
+			});
+		}
+	}
+
+	public List<Domino> darMano(int turno) {
+		return this.baraja.repartir();
 	}
 
 	public int obtenerGanador() {

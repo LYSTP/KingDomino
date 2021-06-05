@@ -43,8 +43,8 @@ public class Domino implements Comparable<Domino> {
 		return elemDerecho;
 	}
 
-	public int getNumero() {
-		return numero;
+	public Integer getNumero() {
+		return (Integer) numero;
 	}
 
 	public void setNumero(int numero) {

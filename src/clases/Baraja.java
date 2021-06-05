@@ -30,12 +30,23 @@ public class Baraja {
 		for (int i = this.dominosRepartidos; i < this.dominosRepartidos + cantDominos; i++) {
 			salida.add(this.dominos.get(i));
 		}
+		
+		//Remuevo mano de la Baraja
+		for (Domino domino : salida) {			
+			dominos.remove(domino);			
+		}
 
 		this.dominosRepartidos += cantDominos;
 
 		Collections.sort(salida);
 		return salida;
 		// retorna las fichas que pudo repartir
+	}
+	
+	public Baraja(int cant,ArrayList<Domino> dom) {
+		this.cantDominos=cant;
+		this.dominos=dom;
+		mezclar();
 	}
 
 	public Baraja() {
@@ -223,8 +234,9 @@ public class Baraja {
 		return this.dominos.size();
 	}
 
-	public List<Domino> getMazo() {
+	public List<Domino> getBaraja() {
 		return dominos;
 	}
+
 
 }

@@ -15,7 +15,6 @@ public class Jugador {
 	public Jugador(int id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
-
 		this.tablero = new Tablero();
 	}
 
@@ -24,10 +23,14 @@ public class Jugador {
 		this.dominoSeleccionado = dominos.get(numeroDominoOrden);
 	}
 
-	public boolean posicionarDominoEnTablero(Domino domino, CordenadasDomino elementoIzquierda,
+	public Domino getDominoSeleccionado() {
+		return dominoSeleccionado;
+	}
+
+	public boolean posicionarDominoEnTablero(CordenadasDomino elementoIzquierda,
 			CordenadasDomino elementoDerecha) {
 
-		return this.tablero.colocarDomino(domino, elementoIzquierda, elementoDerecha);
+		return this.tablero.colocarDomino(this.dominoSeleccionado, elementoIzquierda, elementoDerecha);
 
 	}
 
@@ -53,6 +56,11 @@ public class Jugador {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public void setDominoSeleccionado(Domino domino) {
+		this.dominoSeleccionado = domino;
+		
 	}
 
 }
