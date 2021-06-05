@@ -6,28 +6,6 @@ import clases.Elemento.tiposElementos;
 
 public class Tablero {
 
-//		private List<Territorio> territorios; 
-//		// pensamos hacer una lista de territorios de elementos para no usar una matriz
-	//
-//		Domino castillo;
-	//
-//		public Tablero() {
-//			this.castillo = new Domino(new Elemento("Castillo", 0));
-//			this.territorios = new LinkedList<Territorio>();
-//		}
-	//
-//		public void agregarDomino(Domino dominoNuevo, Domino dominoTablero) {
-	//
-//			if (dominoTablero.puedenUnir(dominoNuevo)) {
-//				agregar(dominoNuevo);
-//			}
-//		}
-	//
-//		private void agregar(Domino dominoNuevo) {
-	//
-//		}
-
-	// Agregado 23/05
 	private List<Domino> dominos;
 	private Elemento[][] tableroJugador = new Elemento[9][9];
 	private int totalBoardScore = 0;
@@ -106,31 +84,35 @@ public class Tablero {
 	// colocarlos, es decir mismo tipo o castillo.
 	public boolean comprobarAdyaPorElem(Domino domino, CordenadasDomino elemento) {
 
-		if (elemento.getX() - 1 >= 0 && tableroJugador[elemento.getX() - 1][elemento.getY()].toString() != tiposElementos.VACIO.toString()) {
+		if (elemento.getX() - 1 >= 0
+				&& tableroJugador[elemento.getX() - 1][elemento.getY()].toString() != tiposElementos.VACIO.toString()) {
 			if (tableroJugador[elemento.getX() - 1][elemento.getY()].toString() == domino.getElemIzquierdo().toString()
 					|| tableroJugador[elemento.getX() - 1][elemento.getY()].toString() == tiposElementos.CASTILLO
 							.toString()) {
 				return true;
 			}
 		}
-		
-		if (elemento.getY() - 1 >= 0 && tableroJugador[elemento.getX()][elemento.getY() - 1].toString() != tiposElementos.VACIO.toString()) {
+
+		if (elemento.getY() - 1 >= 0
+				&& tableroJugador[elemento.getX()][elemento.getY() - 1].toString() != tiposElementos.VACIO.toString()) {
 			if (tableroJugador[elemento.getX()][elemento.getY() - 1].toString() == domino.getElemIzquierdo().toString()
 					|| tableroJugador[elemento.getX()][elemento.getY() - 1].toString() == tiposElementos.CASTILLO
 							.toString()) {
 				return true;
 			}
 		}
-		
-		if (elemento.getX() + 1 < 9 && tableroJugador[elemento.getX() + 1][elemento.getY()].toString() != tiposElementos.VACIO.toString()) {
+
+		if (elemento.getX() + 1 < 9
+				&& tableroJugador[elemento.getX() + 1][elemento.getY()].toString() != tiposElementos.VACIO.toString()) {
 			if (tableroJugador[elemento.getX() + 1][elemento.getY()].toString() == domino.getElemIzquierdo().toString()
 					|| tableroJugador[elemento.getX() + 1][elemento.getY()].toString() == tiposElementos.CASTILLO
 							.toString()) {
 				return true;
 			}
 		}
-		
-		if (elemento.getY() + 1 < 9 && tableroJugador[elemento.getX()][elemento.getY() + 1].toString() != tiposElementos.VACIO.toString()) {
+
+		if (elemento.getY() + 1 < 9
+				&& tableroJugador[elemento.getX()][elemento.getY() + 1].toString() != tiposElementos.VACIO.toString()) {
 			if (tableroJugador[elemento.getX()][elemento.getY() + 1].toString() == domino.getElemIzquierdo().toString()
 					|| tableroJugador[elemento.getX()][elemento.getY() + 1].toString() == tiposElementos.CASTILLO
 							.toString()) {

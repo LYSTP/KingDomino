@@ -7,6 +7,7 @@ public class Jugador {
 	private String nombre;
 
 	private Tablero tablero;
+
 	private Domino dominoSeleccionado;
 
 	private boolean esTurno = false;
@@ -59,8 +60,11 @@ public class Jugador {
 	}
 
 	public void setDominoSeleccionado(Domino domino) {
-		this.dominoSeleccionado = domino;
-		
+		this.dominoSeleccionado = domino;	
+	}
+	
+	public Tablero getTablero() {
+		return tablero;
 	}
 
 }

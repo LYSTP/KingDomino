@@ -36,5 +36,18 @@ public class GestionJuegoTest {
 		gj.quitarJugador(j1);
 		assertEquals(jugadoresAntes - 1, gj.getJugadores().size());
 	}
+	
+	@Test
+	public void iniciarPartida() {		
+		Jugador j1 = new Jugador(1, "Pedro");
+		Jugador j2 = new Jugador(2, "Carlos");
+		List<Jugador> jugadores = new LinkedList<Jugador>();
+		jugadores.add(j1);
+		jugadores.add(j2);
+		GestionJuego gj = new GestionJuego(jugadores);
+		
+		gj.iniciarPartida();
+		
+	}
 
 }

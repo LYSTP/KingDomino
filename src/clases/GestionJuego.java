@@ -1,10 +1,7 @@
 package clases;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class GestionJuego {
 
@@ -32,7 +29,7 @@ public class GestionJuego {
 				ordenarJugadores();
 				Ronda.nuevaRonda(jugadores, baraja.repartir());
 			}
-			//finaliza la partida
+			// finaliza la partida
 			obtenerGanador();
 		} else
 			System.out.println("Cantidad de jugadores no valida.");
