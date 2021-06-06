@@ -9,7 +9,8 @@ public class Ronda {
 
 	public static void nuevaRonda(List<Jugador> jugadores, List<Domino> dominos) {
 		for (Jugador jugador : jugadores) {
-
+			jugador.getTablero().mostrarTablero();
+			System.out.println();
 			turnoJugador(jugador, dominos);
 
 			if (jugador.getDominoSeleccionado() != null) {
@@ -59,11 +60,13 @@ public class Ronda {
 
 		System.out.println("Elegir uno de los " + dominos.size() + " dominos disponibles: \n");
 
+		int i=0;
 		for (Domino domino : dominos) {
-			System.out.println(domino.toString() + "\n");
+			i++;
+			System.out.print(i + ")" + domino.toString() + "\t");	
 		}
-
-		Scanner sc = new Scanner(System.in);
+		System.out.println();
+		//Scanner sc = new Scanner(System.in);
 		
 		//int entrada = sc.nextInt();
 		int entrada = reader.nextInt();
@@ -81,7 +84,5 @@ public class Ronda {
 		//sc.close();
 		
 		reader.nextLine();
-
 	}
-
 }

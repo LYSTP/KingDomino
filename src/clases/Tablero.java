@@ -84,44 +84,39 @@ public class Tablero {
 	// colocarlos, es decir mismo tipo o castillo.
 	public boolean comprobarAdyaPorElem(Domino domino, CordenadasDomino elemento) {
 
-		if (elemento.getX() - 1 >= 0
-				&& tableroJugador[elemento.getX() - 1][elemento.getY()].toString() != tiposElementos.VACIO.toString()) {
-			if (tableroJugador[elemento.getX() - 1][elemento.getY()].toString() == domino.getElemIzquierdo().toString()
-					|| tableroJugador[elemento.getX() - 1][elemento.getY()].toString() == tiposElementos.CASTILLO
-							.toString()) {
+		String posicionOeste = tableroJugador[elemento.getX() - 1][elemento.getY()].toString();
+		String posicionSur = tableroJugador[elemento.getX()][elemento.getY() - 1].toString();
+		String posicionEste = tableroJugador[elemento.getX() + 1][elemento.getY()].toString();
+		String posicionNorte = tableroJugador[elemento.getX()][elemento.getY() - 1].toString();
+		
+		if (elemento.getX() - 1 >= 0 && posicionOeste != tiposElementos.VACIO.toString()) {
+			if (posicionOeste == domino.getElemIzquierdo().toString() || 
+				posicionOeste == tiposElementos.CASTILLO.toString()) {
 				return true;
 			}
 		}
 
-		if (elemento.getY() - 1 >= 0
-				&& tableroJugador[elemento.getX()][elemento.getY() - 1].toString() != tiposElementos.VACIO.toString()) {
-			if (tableroJugador[elemento.getX()][elemento.getY() - 1].toString() == domino.getElemIzquierdo().toString()
-					|| tableroJugador[elemento.getX()][elemento.getY() - 1].toString() == tiposElementos.CASTILLO
-							.toString()) {
+		if (elemento.getY() - 1 >= 0 && posicionSur != tiposElementos.VACIO.toString()) {
+			if (posicionSur == domino.getElemIzquierdo().toString() || 
+				posicionSur == tiposElementos.CASTILLO.toString()) {
 				return true;
 			}
 		}
 
-		if (elemento.getX() + 1 < 9
-				&& tableroJugador[elemento.getX() + 1][elemento.getY()].toString() != tiposElementos.VACIO.toString()) {
-			if (tableroJugador[elemento.getX() + 1][elemento.getY()].toString() == domino.getElemIzquierdo().toString()
-					|| tableroJugador[elemento.getX() + 1][elemento.getY()].toString() == tiposElementos.CASTILLO
-							.toString()) {
+		if (elemento.getX() + 1 < 9 && posicionEste != tiposElementos.VACIO.toString()) {
+			if (posicionEste == domino.getElemIzquierdo().toString() || 
+				posicionEste == tiposElementos.CASTILLO.toString()) {
 				return true;
 			}
 		}
 
-		if (elemento.getY() + 1 < 9
-				&& tableroJugador[elemento.getX()][elemento.getY() + 1].toString() != tiposElementos.VACIO.toString()) {
-			if (tableroJugador[elemento.getX()][elemento.getY() + 1].toString() == domino.getElemIzquierdo().toString()
-					|| tableroJugador[elemento.getX()][elemento.getY() + 1].toString() == tiposElementos.CASTILLO
-							.toString()) {
+		if (elemento.getY() + 1 < 9 && posicionNorte != tiposElementos.VACIO.toString()) {
+			if (posicionNorte == domino.getElemIzquierdo().toString() || 
+				posicionNorte == tiposElementos.CASTILLO.toString()) {
 				return true;
 			}
 		}
-
 		return false;
-
 	}
 
 	private boolean tieneElementoAdyacente(Domino domino, CordenadasDomino elementoIzquierda,
@@ -169,5 +164,6 @@ public class Tablero {
 			}
 			System.out.println();
 		}
+		System.out.println();
 	}
 }

@@ -29,7 +29,7 @@ public class Archivo {
 				dominos.add(d);
 			}
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}	
 		sc.close();
