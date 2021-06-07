@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Ronda {
 	
-	//static Scanner reader = new Scanner(System.in);
+	static Scanner reader = new Scanner(System.in);
 
 	public static void nuevaRonda(List<Jugador> jugadores, List<Domino> dominos) {
 		boolean state = false;
@@ -20,7 +20,7 @@ public class Ronda {
 
 				int c1,c2,f1,f2;
 				int cont = 0;
-				Scanner reader = new Scanner(System.in);
+				//Scanner reader = new Scanner(System.in);
 				while(state == false && cont < 5) {
 					System.out.println("Indique posición para elemento izquierdo del Domino ");
 					System.out.println("X: ");
@@ -69,7 +69,7 @@ public class Ronda {
 				
 				//sc_iz.close();
 				//sc_der.close();
-				reader.close();
+				//reader.close();
 				jugador.getTablero().mostrarTablero();
 			}
 			else
@@ -89,7 +89,7 @@ public class Ronda {
 			System.out.println(i + ")" + domino.toString());	
 		}
 		System.out.println();
-		Scanner reader = new Scanner(System.in);
+	//	Scanner reader = new Scanner(System.in);
 		
 		//int entrada = sc.nextInt();
 		int entrada = reader.nextInt();
@@ -105,6 +105,6 @@ public class Ronda {
 
 		dominos.remove(entrada - 1);
 
-		reader.close();
+		//reader.close();
 	}
 }
