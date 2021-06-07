@@ -73,7 +73,7 @@ public class Tablero {
 
 		if (esPosicionValida(domino, elementoIzquierda, elementoDerecha)) {
 			tableroJugador[elementoIzquierda.getX()][elementoIzquierda.getY()] = domino.getElemIzquierdo();
-			tableroJugador[elementoDerecha.getX()][elementoIzquierda.getY()] = domino.getElemDerecho();
+			tableroJugador[elementoDerecha.getX()][elementoDerecha.getY()] = domino.getElemDerecho(); /// GENTE, ESTABA 2 VECES EL ELEMENTOIzquierda en el segundo jajajajaj
 			return true;
 		}
 		return false;
@@ -84,35 +84,35 @@ public class Tablero {
 	// colocarlos, es decir mismo tipo o castillo.
 	public boolean comprobarAdyaPorElem(Elemento elemento, CordenadasDomino coordenada) {
 
-		String elementoOeste = tableroJugador[coordenada.getX() - 1][coordenada.getY()].toString();
-		String elementoSur = tableroJugador[coordenada.getX()][coordenada.getY() - 1].toString();
-		String elementoEste = tableroJugador[coordenada.getX() + 1][coordenada.getY()].toString();
-		String elementoNorte = tableroJugador[coordenada.getX()][coordenada.getY() - 1].toString();
+		String elementoNorte = tableroJugador[coordenada.getX() - 1][coordenada.getY()].toString();
+		String elementoOeste = tableroJugador[coordenada.getX()][coordenada.getY() - 1].toString();
+		String elementoSur = tableroJugador[coordenada.getX() + 1][coordenada.getY()].toString();
+		String elementoEste = tableroJugador[coordenada.getX()][coordenada.getY() + 1].toString();
 		
-		if (coordenada.getX()-1 >= 0 && elementoOeste != tiposElementos.VACIO.toString()) {	/// Comprobar si se puede insertar con el elemento de la izquierda (Oeste)
+		if (coordenada.getX()-1 >= 0 && elementoNorte != tiposElementos.VACIO.toString()) {
+			if (elementoNorte == elemento.toString() || 
+				elementoNorte == tiposElementos.CASTILLO.toString()) {
+				return true;
+			}
+		}
+
+		if (coordenada.getY() - 1 >= 0 && elementoOeste != tiposElementos.VACIO.toString()) { 
 			if (elementoOeste == elemento.toString() || 
 				elementoOeste == tiposElementos.CASTILLO.toString()) {
 				return true;
 			}
 		}
 
-		if (coordenada.getY() - 1 >= 0 && elementoSur != tiposElementos.VACIO.toString()) { /// Comprobar si se puede insertar con el elemento de abajo (sur)
+		if (coordenada.getX() + 1 < 9 && elementoSur != tiposElementos.VACIO.toString()) { 
 			if (elementoSur == elemento.toString() || 
 				elementoSur == tiposElementos.CASTILLO.toString()) {
 				return true;
 			}
 		}
 
-		if (coordenada.getX() + 1 < 9 && elementoEste != tiposElementos.VACIO.toString()) { /// Comprobar si se puede insertar con el elemento derecho (Este)
+		if (coordenada.getY() + 1 < 9 && elementoEste != tiposElementos.VACIO.toString()) { 
 			if (elementoEste == elemento.toString() || 
 				elementoEste == tiposElementos.CASTILLO.toString()) {
-				return true;
-			}
-		}
-
-		if (coordenada.getY() + 1 < 9 && elementoNorte != tiposElementos.VACIO.toString()) { /// Comprobar si se puede insetar con el elemento de arriba.
-			if (elementoNorte == elemento.toString() || 
-				elementoNorte == tiposElementos.CASTILLO.toString()) {
 				return true;
 			}
 		}
@@ -152,15 +152,10 @@ public class Tablero {
 	 * System.out.println("|"); } }
 	 */
 
-	public void mostrarTablero() {
+	public void mostrarTablero() { // se arreglo el formato.
 		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
-				if (tableroJugador[i][j].getDescripcion() == "CASTILLO") {
-					System.out.print("CASTI" + "\t");
-				} else {
-					System.out.print(tableroJugador[i][j] + "\t");
-				}
-			}
+			for (int j = 0; j < 9; j++)
+					System.out.printf("%-10s",tableroJugador[i][j]);
 			System.out.println();
 		}
 		System.out.println();
