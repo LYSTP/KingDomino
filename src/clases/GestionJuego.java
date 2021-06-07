@@ -50,6 +50,26 @@ public class GestionJuego {
 		return this.baraja.repartir();
 	}
 
+	public int crearPartida() {
+		// elejir modo de juego.
+		return jugadores.size();
+	}
+	
+	public boolean verificarParticipantes() {
+		if(jugadores.size() >= 2 && jugadores.size() <= 4)
+			return true;
+		return false;
+	}
+	
+	
+/*	public void iniciarPartida() {	//Devolvera un jugador ganador.
+		Jugador ganador;
+		
+		
+		
+		
+	}*/
+
 	public int obtenerGanador() {
 		return 1;
 	}

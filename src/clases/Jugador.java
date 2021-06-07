@@ -12,7 +12,8 @@ public class Jugador {
 
 	private boolean esTurno = false;
 	private int puntos = 0;
-
+	//private Tablero t;
+	
 	public Jugador(int id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
