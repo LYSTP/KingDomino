@@ -8,7 +8,7 @@ public class Ronda {
 	static Scanner reader = new Scanner(System.in);
 
 	public static void nuevaRonda(List<Jugador> jugadores, List<Domino> dominos) {
-		boolean state = false;
+		
 		for (Jugador jugador : jugadores) {
 			jugador.getTablero().mostrarTablero();
 			System.out.println();
@@ -21,6 +21,9 @@ public class Ronda {
 				int c1,c2,f1,f2;
 				int cont = 0;
 				//Scanner reader = new Scanner(System.in);
+				
+				boolean state = false;
+				
 				while(state == false && cont < 5) {
 					System.out.println("Indique posición para elemento izquierdo del Domino ");
 					System.out.println("X: ");
