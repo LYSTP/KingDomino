@@ -16,7 +16,7 @@ public class Elemento implements Comparable<Elemento> {
 	// Agregado 23/05
 	// Elemento deberia recibir el tipo y cantidad de coronas y no una descripcion
 	public enum tiposElementos {
-		CASTILLO, PASTIZAL, AGUA, CESPED, BOSQUE, MINA, TIERRA, CORONA, VACIO, NO_DISPONIBLE
+		CASTILLO, PASTIZAL, AGUA, CESPED, BOSQUE, MINA, TIERRA, CORONA, VACIO, NO_DISP
 	}
 
 	public void setDescripcion(String descripcion) {

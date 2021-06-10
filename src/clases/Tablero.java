@@ -25,13 +25,31 @@ public class Tablero {
 		}
 	}
 
-	public void limitarTablero() {
+	public void limitarTablero(CordenadasDomino elementoIzquierda, CordenadasDomino elementoDerecha) {
 
-		int minimoEnX = 9;
-		int maximoEnX = 0;
-		int minimoEnY = 9;
-		int maximoEnY = 0;
+		int minimoEnX = Math.min(elementoIzquierda.getX(), elementoDerecha.getX());
+		int maximoEnX = Math.max(elementoIzquierda.getX(), elementoDerecha.getX());
+		int minimoEnY = Math.min(elementoIzquierda.getY(), elementoDerecha.getY());
+		int maximoEnY = Math.max(elementoIzquierda.getY(), elementoDerecha.getY());
 
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
+				if (j > minimoEnX + 4) {
+					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISP, 0);
+				}
+				if (j < maximoEnX - 4) {
+					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISP, 0);
+				}
+				if (i > minimoEnY + 4) {
+					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISP, 0);
+				}
+				if (i < maximoEnY - 4) {
+					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISP, 0);
+				}
+			}
+		} ///
+		
+		/*
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 
@@ -50,23 +68,7 @@ public class Tablero {
 
 			}
 		}
-
-		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
-				if (j > minimoEnX + 4) {
-					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISPONIBLE, 0);
-				}
-				if (j < maximoEnX - 4) {
-					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISPONIBLE, 0);
-				}
-				if (i > minimoEnY + 4) {
-					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISPONIBLE, 0);
-				}
-				if (i < maximoEnY - 4) {
-					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISPONIBLE, 0);
-				}
-			}
-		} ///
+*/
 	}
 
 	public boolean colocarDomino(Domino domino, CordenadasDomino elementoIzquierda, CordenadasDomino elementoDerecha) {
@@ -74,6 +76,7 @@ public class Tablero {
 		if (esPosicionValida(domino, elementoIzquierda, elementoDerecha)) {
 			tableroJugador[elementoIzquierda.getX()][elementoIzquierda.getY()] = domino.getElemIzquierdo();
 			tableroJugador[elementoDerecha.getX()][elementoDerecha.getY()] = domino.getElemDerecho(); /// GENTE, ESTABA 2 VECES EL ELEMENTOIzquierda en el segundo jajajajaj
+			limitarTablero(elementoIzquierda, elementoDerecha);
 			return true;
 		}
 		return false;
@@ -92,7 +95,7 @@ public class Tablero {
 			}
 		}
 		
-		//comparo a laizquierda
+		//comparo a la izquierda
 		if (coordenada.getY()-1 >= 0 && tableroJugador[coordenada.getX()][coordenada.getY()-1].toString() != tiposElementos.VACIO.toString()) { 
 			if (tableroJugador[coordenada.getX()][coordenada.getY()-1].toString() == elemento.toString() || 
 					tableroJugador[coordenada.getX()][coordenada.getY()-1].toString() == tiposElementos.CASTILLO.toString()) {
@@ -100,18 +103,18 @@ public class Tablero {
 			}
 		}
 
-		//comparo abajo
-		if (coordenada.getY()+1 < 9 && tableroJugador[coordenada.getY()+1][coordenada.getY()].toString() != tiposElementos.VACIO.toString()) { 
-			if (tableroJugador[coordenada.getY()+1][coordenada.getY()].toString() == elemento.toString() || 
-					tableroJugador[coordenada.getY()+1][coordenada.getY()].toString() == tiposElementos.CASTILLO.toString()) {
+		//comparo a la derecha
+		if (coordenada.getY()+1 < 9 && tableroJugador[coordenada.getX()][coordenada.getY()+1].toString() != tiposElementos.VACIO.toString()) { 
+			if (tableroJugador[coordenada.getX()][coordenada.getY()+1].toString() == elemento.toString() || 
+					tableroJugador[coordenada.getX()][coordenada.getY()+1].toString() == tiposElementos.CASTILLO.toString()) {
 				return true;
 			}
 		}
 		
-		//comparo a la derecha
-		if (coordenada.getX()+1 < 9 && tableroJugador[coordenada.getX()][coordenada.getX()+1].toString() != tiposElementos.VACIO.toString()) { 
-			if (tableroJugador[coordenada.getX()][coordenada.getX()+1].toString() == elemento.toString() || 
-					tableroJugador[coordenada.getX()][coordenada.getX()+1].toString() == tiposElementos.CASTILLO.toString()) {
+		//comparo aabajo
+		if (coordenada.getX()+1 < 9 && tableroJugador[coordenada.getX()+1][coordenada.getY()].toString() != tiposElementos.VACIO.toString()) { 
+			if (tableroJugador[coordenada.getX()+1][coordenada.getY()].toString() == elemento.toString() || 
+					tableroJugador[coordenada.getX()+1][coordenada.getY()].toString() == tiposElementos.CASTILLO.toString()) {
 				return true;
 			}
 		}
