@@ -84,35 +84,34 @@ public class Tablero {
 	// colocarlos, es decir mismo tipo o castillo.
 	public boolean comprobarAdyaPorElem(Elemento elemento, CordenadasDomino coordenada) {
 
-		String elementoNorte = tableroJugador[coordenada.getX() - 1][coordenada.getY()].toString();
-		String elementoOeste = tableroJugador[coordenada.getX()][coordenada.getY() - 1].toString();
-		String elementoSur = tableroJugador[coordenada.getX() + 1][coordenada.getY()].toString();
-		String elementoEste = tableroJugador[coordenada.getX()][coordenada.getY() + 1].toString();
+		//comparo arriba
+		if (coordenada.getX()-1 >= 0 && tableroJugador[ coordenada.getX()-1][coordenada.getY()].toString() != tiposElementos.VACIO.toString()) {
+			if (tableroJugador[ coordenada.getX()-1][coordenada.getY()].toString() == elemento.toString() || 
+					tableroJugador[ coordenada.getX()-1][coordenada.getY()].toString() == tiposElementos.CASTILLO.toString()) {
+				return true;
+			}
+		}
 		
-		if (coordenada.getX()-1 >= 0 && elementoNorte != tiposElementos.VACIO.toString()) {
-			if (elementoNorte == elemento.toString() || 
-				elementoNorte == tiposElementos.CASTILLO.toString()) {
+		//comparo a laizquierda
+		if (coordenada.getY()-1 >= 0 && tableroJugador[coordenada.getX()][coordenada.getY()-1].toString() != tiposElementos.VACIO.toString()) { 
+			if (tableroJugador[coordenada.getX()][coordenada.getY()-1].toString() == elemento.toString() || 
+					tableroJugador[coordenada.getX()][coordenada.getY()-1].toString() == tiposElementos.CASTILLO.toString()) {
 				return true;
 			}
 		}
 
-		if (coordenada.getY() - 1 >= 0 && elementoOeste != tiposElementos.VACIO.toString()) { 
-			if (elementoOeste == elemento.toString() || 
-				elementoOeste == tiposElementos.CASTILLO.toString()) {
+		//comparo abajo
+		if (coordenada.getY()+1 < 9 && tableroJugador[coordenada.getY()+1][coordenada.getY()].toString() != tiposElementos.VACIO.toString()) { 
+			if (tableroJugador[coordenada.getY()+1][coordenada.getY()].toString() == elemento.toString() || 
+					tableroJugador[coordenada.getY()+1][coordenada.getY()].toString() == tiposElementos.CASTILLO.toString()) {
 				return true;
 			}
 		}
-
-		if (coordenada.getX() + 1 < 9 && elementoSur != tiposElementos.VACIO.toString()) { 
-			if (elementoSur == elemento.toString() || 
-				elementoSur == tiposElementos.CASTILLO.toString()) {
-				return true;
-			}
-		}
-
-		if (coordenada.getY() + 1 < 9 && elementoEste != tiposElementos.VACIO.toString()) { 
-			if (elementoEste == elemento.toString() || 
-				elementoEste == tiposElementos.CASTILLO.toString()) {
+		
+		//comparo a la derecha
+		if (coordenada.getX()+1 < 9 && tableroJugador[coordenada.getX()][coordenada.getX()+1].toString() != tiposElementos.VACIO.toString()) { 
+			if (tableroJugador[coordenada.getX()][coordenada.getX()+1].toString() == elemento.toString() || 
+					tableroJugador[coordenada.getX()][coordenada.getX()+1].toString() == tiposElementos.CASTILLO.toString()) {
 				return true;
 			}
 		}

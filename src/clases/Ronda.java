@@ -45,12 +45,16 @@ public class Ronda {
 					//coordenadaElementoDerecho.setY(sc_der.nextInt());
 					f2 = reader.nextInt();
 					reader.nextLine();
-					if( (( Math.abs(c1 - c2) == 1 && f1 == f2 ) || (Math.abs(f2 - f1) == 1 && c1 == c2))) {
-						/// ya paso la adyacencia
+					
+					//verifico adyacencia
+					if( (( Math.abs(c1 - c2) == 1 && f1 == f2 ) || (Math.abs(f2 - f1) == 1 && c1 == c2)) ) {
+						
 						coordenadaElementoIzquierdo.setX(c1);
 						coordenadaElementoIzquierdo.setY(f1);
 						coordenadaElementoDerecho.setX(c2);
 						coordenadaElementoDerecho.setY(f2);
+						
+						//verifico si se puede ubicar el domino
 						if (jugador.posicionarDominoEnTablero(coordenadaElementoIzquierdo, coordenadaElementoDerecho)) {
 							System.out.println("Se ubico el domino " + jugador.getDominoSeleccionado().toString() + " en ("
 									+ coordenadaElementoIzquierdo.getX() + ", " + coordenadaElementoIzquierdo.getY() + ") ("
