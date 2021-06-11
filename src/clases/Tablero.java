@@ -49,7 +49,7 @@ public class Tablero {
 					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISP, 0);
 				}
 			}
-		} 
+		}
 	}
 
 	public boolean colocarDomino(Domino domino, CordenadasDomino elementoIzquierda, CordenadasDomino elementoDerecha) {
@@ -57,7 +57,7 @@ public class Tablero {
 		if (esPosicionValida(domino, elementoIzquierda, elementoDerecha)) {
 			tableroJugador[elementoIzquierda.getX()][elementoIzquierda.getY()] = domino.getElemIzquierdo();
 			tableroJugador[elementoDerecha.getX()][elementoDerecha.getY()] = domino.getElemDerecho();
-			
+
 			limitarTablero(elementoIzquierda, elementoDerecha);
 			cantTerrenoColocado++;
 			return true;
@@ -138,6 +138,7 @@ public class Tablero {
 	public int puntajeTotal() {
 		int acumPuntos = 0;
 		int contTerritorios = 0;
+
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 
@@ -175,26 +176,26 @@ public class Tablero {
 
 				int cantCoronas = puntosPropiedades.get(1) + elementoActual.getCoronas();
 				puntosPropiedades.set(1, cantCoronas);
-				
-				//Derecha
+
+				// Derecha
 				puntajeTerritorios(elementoTipoTerreno, x + 1, y, puntosPropiedades);
-				
-				//Izquierda
+
+				// Izquierda
 				puntajeTerritorios(elementoTipoTerreno, x - 1, y, puntosPropiedades);
 
-				//Arriba
+				// Arriba
 				puntajeTerritorios(elementoTipoTerreno, x, y + 1, puntosPropiedades);
 
-				//Abajo
+				// Abajo
 				puntajeTerritorios(elementoTipoTerreno, x, y - 1, puntosPropiedades);
 			}
 		} else
 			return;
 
 	}
-	
+
 	private int contarPuntajeParcial(int x, int y) {
-		
+
 		Elemento elemento = tableroJugador[x][y];
 
 		if (elemento == null)
@@ -211,7 +212,7 @@ public class Tablero {
 		return (puntosPropiedades.get(0) * puntosPropiedades.get(1));
 	}
 
-	public void mostrarTablero() { 
+	public void mostrarTablero() {
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++)
 				System.out.printf("%-10s", tableroJugador[i][j]);

@@ -35,22 +35,24 @@ public class GestionJuego {
 		} else
 			System.out.println("Cantidad de jugadores no valida.");
 	}
-	
+
 	private List<Integer> calcularPuntajes() {
 		List<Integer> puntajesFinales = new ArrayList<Integer>();
+
 		for (Jugador jugador : jugadores) {
 			System.out.println("Jugador " + jugador.getNombre());
 			puntajesFinales.add(jugador.getTablero().puntajeTotal());
 		}
+
 		return puntajesFinales;
 	}
-	
+
 	private List<Jugador> obtenerGanador(List<Integer> puntajesFinales) {
 		List<Integer> ganaPorPuntos = obtenerGanadoresPorPuntos(puntajesFinales);
 		List<Jugador> ganadores = new ArrayList<Jugador>(jugadores.size());
-		
+
 		if (ganaPorPuntos.size() == 1) {
-			System.out.println("Ha ganado " + jugadores.get(ganaPorPuntos.get(0)).getNombre());
+			System.out.println("Ganó " + jugadores.get(ganaPorPuntos.get(0)).getNombre());
 			ganadores.add(jugadores.get(ganaPorPuntos.get(0)));
 			return ganadores;
 		}
@@ -58,7 +60,7 @@ public class GestionJuego {
 		List<Integer> ganadoresPorTerreno = obtenerGanadoresPorTerreno(ganaPorPuntos);
 
 		if (ganadoresPorTerreno.size() == 1) {
-			System.out.println("Ha ganado " + jugadores.get(ganadoresPorTerreno.get(0)).getNombre());
+			System.out.println("Ganó " + jugadores.get(ganadoresPorTerreno.get(0)).getNombre());
 			ganadores.add(jugadores.get(ganadoresPorTerreno.get(0)));
 			return ganadores;
 		}
@@ -66,11 +68,12 @@ public class GestionJuego {
 		// Mas de un ganador por terreno
 		System.out.println("No se puede desempatar");
 		System.out.println("Los Ganadores son:");
-		
+
 		for (int i = 0; i < ganadoresPorTerreno.size(); i++) {
 			System.out.println(jugadores.get(ganadoresPorTerreno.get(i)).getNombre());
 			ganadores.add(jugadores.get(ganadoresPorTerreno.get(i)));
 		}
+
 		return ganadores;
 	}
 
@@ -78,7 +81,7 @@ public class GestionJuego {
 		int maxPuntaje = 0;
 		List<Integer> ganadoresPorPunto = new ArrayList<Integer>();
 
-		System.out.println("PUNTAJES FINALES:");
+		System.out.println("Puntajes Finales:");
 		for (int i = 0; i < puntajesFinales.size(); i++) {
 			Integer puntaje = puntajesFinales.get(i);
 			System.out.println(jugadores.get(i).getNombre() + ":" + puntaje);
@@ -99,6 +102,7 @@ public class GestionJuego {
 		// Si hay mas de un ganador por puntos, se define por cantidad de terreno
 		int propiedadMasExtensa = 0;
 		List<Integer> ganadoresPorTerreno = new ArrayList<Integer>();
+
 		System.out.println("Empate");
 		for (int i = 0; i < ganaPorPuntos.size(); i++) {
 			int cantTerreno = jugadores.get(ganaPorPuntos.get(0)).getCantTerrenoColocado();
@@ -113,6 +117,7 @@ public class GestionJuego {
 				}
 			}
 		}
+
 		return ganadoresPorTerreno;
 	}
 
@@ -135,13 +140,13 @@ public class GestionJuego {
 		// elejir modo de juego.
 		return jugadores.size();
 	}
-	
+
 	public boolean verificarParticipantes() {
-		if(jugadores.size() >= 2 && jugadores.size() <= 4)
+		if (jugadores.size() >= 2 && jugadores.size() <= 4)
 			return true;
 		return false;
 	}
-	
+
 	public List<Jugador> getJugadores() {
 		return jugadores;
 	}
