@@ -1,5 +1,6 @@
 package clases;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import clases.Elemento.tiposElementos;
@@ -9,6 +10,7 @@ public class Tablero {
 	private List<Domino> dominos;
 	private Elemento[][] tableroJugador = new Elemento[9][9];
 	private int totalBoardScore = 0;
+	private int cantTerrenoColocado = 0;
 
 	// Se inicia un tablero con el castillo como pieza central
 	public Tablero() {
@@ -47,36 +49,17 @@ public class Tablero {
 					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISP, 0);
 				}
 			}
-		} ///
-		
-		/*
-		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
-
-				if (j < minimoEnX) {
-					minimoEnX = j;
-				}
-				if (j > maximoEnX) {
-					maximoEnX = j;
-				}
-				if (i < minimoEnY) {
-					minimoEnY = i;
-				}
-				if (i > maximoEnY) {
-					maximoEnY = i;
-				}
-
-			}
-		}
-*/
+		} 
 	}
 
 	public boolean colocarDomino(Domino domino, CordenadasDomino elementoIzquierda, CordenadasDomino elementoDerecha) {
 
 		if (esPosicionValida(domino, elementoIzquierda, elementoDerecha)) {
 			tableroJugador[elementoIzquierda.getX()][elementoIzquierda.getY()] = domino.getElemIzquierdo();
-			tableroJugador[elementoDerecha.getX()][elementoDerecha.getY()] = domino.getElemDerecho(); /// GENTE, ESTABA 2 VECES EL ELEMENTOIzquierda en el segundo jajajajaj
+			tableroJugador[elementoDerecha.getX()][elementoDerecha.getY()] = domino.getElemDerecho();
+			
 			limitarTablero(elementoIzquierda, elementoDerecha);
+			cantTerrenoColocado++;
 			return true;
 		}
 		return false;
@@ -87,34 +70,42 @@ public class Tablero {
 	// colocarlos, es decir mismo tipo o castillo.
 	public boolean comprobarAdyaPorElem(Elemento elemento, CordenadasDomino coordenada) {
 
-		//comparo arriba
-		if (coordenada.getX()-1 >= 0 && tableroJugador[ coordenada.getX()-1][coordenada.getY()].toString() != tiposElementos.VACIO.toString()) {
-			if (tableroJugador[ coordenada.getX()-1][coordenada.getY()].toString() == elemento.toString() || 
-					tableroJugador[ coordenada.getX()-1][coordenada.getY()].toString() == tiposElementos.CASTILLO.toString()) {
-				return true;
-			}
-		}
-		
-		//comparo a la izquierda
-		if (coordenada.getY()-1 >= 0 && tableroJugador[coordenada.getX()][coordenada.getY()-1].toString() != tiposElementos.VACIO.toString()) { 
-			if (tableroJugador[coordenada.getX()][coordenada.getY()-1].toString() == elemento.toString() || 
-					tableroJugador[coordenada.getX()][coordenada.getY()-1].toString() == tiposElementos.CASTILLO.toString()) {
+		// comparo arriba
+		if (coordenada.getX() - 1 >= 0 && tableroJugador[coordenada.getX() - 1][coordenada.getY()]
+				.toString() != tiposElementos.VACIO.toString()) {
+			if (tableroJugador[coordenada.getX() - 1][coordenada.getY()].toString() == elemento.toString()
+					|| tableroJugador[coordenada.getX() - 1][coordenada.getY()].toString() == tiposElementos.CASTILLO
+							.toString()) {
 				return true;
 			}
 		}
 
-		//comparo a la derecha
-		if (coordenada.getY()+1 < 9 && tableroJugador[coordenada.getX()][coordenada.getY()+1].toString() != tiposElementos.VACIO.toString()) { 
-			if (tableroJugador[coordenada.getX()][coordenada.getY()+1].toString() == elemento.toString() || 
-					tableroJugador[coordenada.getX()][coordenada.getY()+1].toString() == tiposElementos.CASTILLO.toString()) {
+		// comparo a la izquierda
+		if (coordenada.getY() - 1 >= 0 && tableroJugador[coordenada.getX()][coordenada.getY() - 1]
+				.toString() != tiposElementos.VACIO.toString()) {
+			if (tableroJugador[coordenada.getX()][coordenada.getY() - 1].toString() == elemento.toString()
+					|| tableroJugador[coordenada.getX()][coordenada.getY() - 1].toString() == tiposElementos.CASTILLO
+							.toString()) {
 				return true;
 			}
 		}
-		
-		//comparo aabajo
-		if (coordenada.getX()+1 < 9 && tableroJugador[coordenada.getX()+1][coordenada.getY()].toString() != tiposElementos.VACIO.toString()) { 
-			if (tableroJugador[coordenada.getX()+1][coordenada.getY()].toString() == elemento.toString() || 
-					tableroJugador[coordenada.getX()+1][coordenada.getY()].toString() == tiposElementos.CASTILLO.toString()) {
+
+		// comparo a la derecha
+		if (coordenada.getY() + 1 < 9 && tableroJugador[coordenada.getX()][coordenada.getY() + 1]
+				.toString() != tiposElementos.VACIO.toString()) {
+			if (tableroJugador[coordenada.getX()][coordenada.getY() + 1].toString() == elemento.toString()
+					|| tableroJugador[coordenada.getX()][coordenada.getY() + 1].toString() == tiposElementos.CASTILLO
+							.toString()) {
+				return true;
+			}
+		}
+
+		// comparo abajo
+		if (coordenada.getX() + 1 < 9 && tableroJugador[coordenada.getX() + 1][coordenada.getY()]
+				.toString() != tiposElementos.VACIO.toString()) {
+			if (tableroJugador[coordenada.getX() + 1][coordenada.getY()].toString() == elemento.toString()
+					|| tableroJugador[coordenada.getX() + 1][coordenada.getY()].toString() == tiposElementos.CASTILLO
+							.toString()) {
 				return true;
 			}
 		}
@@ -123,8 +114,9 @@ public class Tablero {
 
 	private boolean tieneElementoAdyacente(Domino domino, CordenadasDomino elementoIzquierda,
 			CordenadasDomino elementoDerecha) {
-		return comprobarAdyaPorElem(domino.getElemIzquierdo(), elementoIzquierda) || comprobarAdyaPorElem(domino.getElemDerecho(), elementoDerecha);
-	} //Lo hace con los 2 lados...
+		return comprobarAdyaPorElem(domino.getElemIzquierdo(), elementoIzquierda)
+				|| comprobarAdyaPorElem(domino.getElemDerecho(), elementoDerecha);
+	} // Lo hace con los 2 lados...
 
 	private boolean esPosicionValida(Domino domino, CordenadasDomino elementoIzquierda,
 			CordenadasDomino elementoDerecha) {
@@ -143,23 +135,92 @@ public class Tablero {
 		return false;
 	}
 
-	/*
-	 * public void mostrarTablero() { for (int x = 0; x < this.tableroJugador.length
-	 * - 1; x++) { System.out.print("|"); for (int y = 0; y <
-	 * this.tableroJugador[x].length - 1; y++) { if
-	 * (this.tableroJugador[x][y].getDescripcion() ==
-	 * tiposElementos.CASTILLO.toString()) { System.out.print("CASTI"); } else {
-	 * System.out.print(this.tableroJugador[x][y]); } if (y !=
-	 * this.tableroJugador[x].length - 1) System.out.print("\t"); }
-	 * System.out.println("|"); } }
-	 */
+	public int puntajeTotal() {
+		int acumPuntos = 0;
+		int contTerritorios = 0;
+		for (int i = 0; i < 9; i++) {
+			for (int j = 0; j < 9; j++) {
 
-	public void mostrarTablero() { // se arreglo el formato.
+				int puntajePropiedad = contarPuntajeParcial(i, j);
+				acumPuntos += puntajePropiedad;
+				if (puntajePropiedad > 0) {
+					contTerritorios++;
+					String tipo = tableroJugador[i][j].getDescripcion();
+					System.out.println(contTerritorios + "-" + tipo + "=" + puntajePropiedad + " puntos.\n");
+				}
+			}
+		}
+
+		System.out.println("Puntaje Final:" + acumPuntos);
+
+		return acumPuntos;
+	}
+
+	private void puntajeTerritorios(String elementoTipoTerreno, int x, int y, List<Integer> puntosPropiedades) {
+
+		if (!(x >= 0 && x < tableroJugador.length && y >= 0 && y < tableroJugador[x].length))
+			return;
+
+		Elemento elementoActual = tableroJugador[x][y];
+
+		if (elementoActual == null)
+			return;
+
+		if (!elementoActual.isComputado()) {
+			if (elementoActual.getDescripcion().equals(elementoTipoTerreno)) {
+				elementoActual.setComputado(true);
+
+				int acumPuntos = puntosPropiedades.get(0) + 1;
+				puntosPropiedades.set(0, acumPuntos);
+
+				int cantCoronas = puntosPropiedades.get(1) + elementoActual.getCoronas();
+				puntosPropiedades.set(1, cantCoronas);
+				
+				//Derecha
+				puntajeTerritorios(elementoTipoTerreno, x + 1, y, puntosPropiedades);
+				
+				//Izquierda
+				puntajeTerritorios(elementoTipoTerreno, x - 1, y, puntosPropiedades);
+
+				//Arriba
+				puntajeTerritorios(elementoTipoTerreno, x, y + 1, puntosPropiedades);
+
+				//Abajo
+				puntajeTerritorios(elementoTipoTerreno, x, y - 1, puntosPropiedades);
+			}
+		} else
+			return;
+
+	}
+	
+	private int contarPuntajeParcial(int x, int y) {
+		
+		Elemento elemento = tableroJugador[x][y];
+
+		if (elemento == null)
+			return 0;
+
+		// Puntos por propiedada y cantidad de coronas
+		List<Integer> puntosPropiedades = new ArrayList<Integer>(2);
+
+		puntosPropiedades.add(0);
+		puntosPropiedades.add(0);
+
+		puntajeTerritorios(elemento.getDescripcion(), x, y, puntosPropiedades);
+
+		return (puntosPropiedades.get(0) * puntosPropiedades.get(1));
+	}
+
+	public void mostrarTablero() { 
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++)
-					System.out.printf("%-10s",tableroJugador[i][j]);
+				System.out.printf("%-10s", tableroJugador[i][j]);
 			System.out.println();
 		}
 		System.out.println();
+	}
+
+	public int getCantTerrenoColocado() {
+		return cantTerrenoColocado;
 	}
 }

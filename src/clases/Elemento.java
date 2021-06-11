@@ -4,6 +4,7 @@ public class Elemento implements Comparable<Elemento> {
 
 	private String descripcion;
 	private int coronas;
+	boolean computado=false;
 
 	private Elemento elemIzquierda;
 	private Elemento elemDerecha;
@@ -116,4 +117,13 @@ public class Elemento implements Comparable<Elemento> {
 	public int getCoronas() {
 		return coronas;
 	}
+
+	public boolean isComputado() {
+		return computado;
+	}
+
+	public void setComputado(boolean computado) {
+		this.computado = computado;
+	}
+
 }

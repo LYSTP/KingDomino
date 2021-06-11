@@ -67,5 +67,9 @@ public class Jugador {
 	public Tablero getTablero() {
 		return tablero;
 	}
+	
+	public int getCantTerrenoColocado() {
+		return tablero.getCantTerrenoColocado();
+	}
 
 }
