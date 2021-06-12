@@ -7,9 +7,7 @@ import clases.Elemento.tiposElementos;
 
 public class Tablero {
 
-	private List<Domino> dominos;
 	private Elemento[][] tableroJugador = new Elemento[9][9];
-	private int totalBoardScore = 0;
 	private int cantTerrenoColocado = 0;
 	private int cantCorona = 0;
 
@@ -166,13 +164,10 @@ public class Tablero {
 					puntosPropiedades[1] = cantCoronas;
 					// Derecha
 					puntajeTerritorios(elementoTipoTerreno, x + 1, y, puntosPropiedades);
-
 					// Izquierda
 					puntajeTerritorios(elementoTipoTerreno, x - 1, y, puntosPropiedades);
-
 					// Arriba
 					puntajeTerritorios(elementoTipoTerreno, x, y + 1, puntosPropiedades);
-
 					// Abajo
 					puntajeTerritorios(elementoTipoTerreno, x, y - 1, puntosPropiedades);
 				}
