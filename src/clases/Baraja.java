@@ -27,13 +27,14 @@ public class Baraja {
 
 		List<Domino> salida = new ArrayList<Domino>();
 		int cantDominos = 4; // se reparten 4 dominos en la mesa
-		for (int i = this.dominosRepartidos; i < this.dominosRepartidos + cantDominos; i++) {
+//		int i = this.dominosRepartidos, cambiamos por 0 porque si no se va de los limites del array
+		for (int i = 0; i < this.dominosRepartidos + cantDominos; i++) {
 			salida.add(this.dominos.get(i));
 		}
-		
-		//Remuevo mano de la Baraja
-		for (Domino domino : salida) {			
-			dominos.remove(domino);			
+
+		// Remuevo mano de la Baraja
+		for (Domino domino : salida) {
+			dominos.remove(domino);
 		}
 
 		this.dominosRepartidos += cantDominos;
@@ -42,10 +43,10 @@ public class Baraja {
 		return salida;
 		// retorna las fichas que pudo repartir
 	}
-	
-	public Baraja(int cant,ArrayList<Domino> dom) {
-		this.cantDominos=cant;
-		this.dominos=dom;
+
+	public Baraja(int cant, ArrayList<Domino> dom) {
+		this.cantDominos = cant;
+		this.dominos = dom;
 		mezclar();
 	}
 
@@ -237,6 +238,5 @@ public class Baraja {
 	public List<Domino> getBaraja() {
 		return dominos;
 	}
-
 
 }
