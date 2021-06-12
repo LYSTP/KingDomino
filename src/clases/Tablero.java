@@ -164,12 +164,13 @@ public class Tablero {
 					puntosPropiedades[1] = cantCoronas;
 					// Derecha
 					puntajeTerritorios(elementoTipoTerreno, x + 1, y, puntosPropiedades);
-					// Izquierda
-					puntajeTerritorios(elementoTipoTerreno, x - 1, y, puntosPropiedades);
-					// Arriba
-					puntajeTerritorios(elementoTipoTerreno, x, y + 1, puntosPropiedades);
 					// Abajo
 					puntajeTerritorios(elementoTipoTerreno, x, y - 1, puntosPropiedades);
+					// Arriba
+					puntajeTerritorios(elementoTipoTerreno, x, y + 1, puntosPropiedades);
+					// Izquierda
+					puntajeTerritorios(elementoTipoTerreno, x - 1, y, puntosPropiedades);
+
 				}
 			}
 		}
