@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import sun.jvm.hotspot.ObjectHistogram;
-
 public class GestionJuego {
 
 	List<Jugador> jugadores;
