@@ -52,7 +52,7 @@ public class GestionJuego {
 		List<Jugador> ganadores = new ArrayList<Jugador>(jugadores.size());
 
 		if (ganaPorPuntos.size() == 1) {
-			System.out.println("Ganó " + jugadores.get(ganaPorPuntos.get(0)).getNombre());
+			System.out.println("Ganó por puntos" + jugadores.get(ganaPorPuntos.get(0)).getNombre());
 			ganadores.add(jugadores.get(ganaPorPuntos.get(0)));
 			return ganadores;
 		}
@@ -60,7 +60,7 @@ public class GestionJuego {
 		List<Integer> ganadoresPorTerreno = obtenerGanadoresPorTerreno(ganaPorPuntos);
 
 		if (ganadoresPorTerreno.size() == 1) {
-			System.out.println("Ganó " + jugadores.get(ganadoresPorTerreno.get(0)).getNombre());
+			System.out.println("Ganó por terreno " + jugadores.get(ganadoresPorTerreno.get(0)).getNombre());
 			ganadores.add(jugadores.get(ganadoresPorTerreno.get(0)));
 			return ganadores;
 		}
@@ -68,7 +68,7 @@ public class GestionJuego {
 		List<Jugador> ganaPorCorona = obtenerGanadoresPorCantCoronas();
 		
 		if (ganaPorCorona.size() == 1) {
-			System.out.println("Ganó " + jugadores.get(ganadoresPorTerreno.get(0)).getNombre());
+			System.out.println("Ganó por corona" + ganaPorCorona.get(0).getNombre());
 			ganadores.add(ganaPorCorona.get(0));
 			return ganadores;
 		}
