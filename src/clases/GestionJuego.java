@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import sun.jvm.hotspot.ObjectHistogram;
+
 public class GestionJuego {
 
 	List<Jugador> jugadores;
@@ -65,7 +67,7 @@ public class GestionJuego {
 			return ganadores;
 		}
 		
-		List<Jugador> ganaPorCorona = obtenerGanadoresPorCantCoronas();
+		List<Jugador> ganaPorCorona = obtenerGanadoresPorCantCoronas(ganadoresPorTerreno);
 		
 		if (ganaPorCorona.size() == 1) {
 			System.out.println("Ganó por corona" + ganaPorCorona.get(0).getNombre());
@@ -130,22 +132,21 @@ public class GestionJuego {
 	}
 	
 	
-	public List<Jugador> obtenerGanadoresPorCantCoronas(){
+	public List<Jugador> obtenerGanadoresPorCantCoronas(List<Integer> jugadores){
 		
 		int maximo = Integer.MIN_VALUE;
 		ArrayList<Jugador> ganadores = new ArrayList<Jugador>();
-		for (Jugador jugador : jugadores) {
-			if(maximo < jugador.getTablero().getCantCorona()) {
-				maximo = jugador.getTablero().getCantCorona();
+		for (Integer jugador : jugadores) {
+			if(maximo < this.jugadores.get(jugador).getTablero().getCantCorona()){
+				maximo = this.jugadores.get(jugador).getTablero().getCantCorona();
 				ganadores.clear();
-				ganadores.add(jugador);
+				ganadores.add(this.jugadores.get(jugador));
 			}
 			else {
-				if(maximo == jugador.getTablero().getCantCorona())
-					ganadores.add(jugador);
+				if(maximo == this.jugadores.get(jugador).getTablero().getCantCorona())
+					ganadores.add(this.jugadores.get(jugador));
 			}
 		}
-		this.jugadores.get(0).getTablero().getCantCorona();
 		return ganadores;
 	}
 
