@@ -11,7 +11,8 @@ public class Tablero {
 	private Elemento[][] tableroJugador = new Elemento[9][9];
 	private int totalBoardScore = 0;
 	private int cantTerrenoColocado = 0;
-
+	private int cantCorona = 0;
+	
 	// Se inicia un tablero con el castillo como pieza central
 	public Tablero() {
 		for (int i = 0; i < tableroJugador.length; i++) {
@@ -60,6 +61,7 @@ public class Tablero {
 
 			limitarTablero(elementoIzquierda, elementoDerecha);
 			cantTerrenoColocado++;
+			this.cantCorona += domino.getElemDerecho().getCoronas() + domino.getElemIzquierdo().getCoronas();
 			return true;
 		}
 		return false;
@@ -157,7 +159,7 @@ public class Tablero {
 		return acumPuntos;
 	}
 
-	private void puntajeTerritorios(String elementoTipoTerreno, int x, int y, List<Integer> puntosPropiedades) {
+	private void puntajeTerritorios(String elementoTipoTerreno, int x, int y, int[] puntosPropiedades) {
 
 		if (!(x >= 0 && x < tableroJugador.length && y >= 0 && y < tableroJugador[x].length))
 			return;
@@ -171,11 +173,11 @@ public class Tablero {
 			if (elementoActual.getDescripcion().equals(elementoTipoTerreno)) {
 				elementoActual.setComputado(true);
 
-				int acumPuntos = puntosPropiedades.get(0) + 1;
-				puntosPropiedades.set(0, acumPuntos);
+				int acumPuntos = puntosPropiedades[0] + 1;
+				puntosPropiedades[0] = acumPuntos;
 
-				int cantCoronas = puntosPropiedades.get(1) + elementoActual.getCoronas();
-				puntosPropiedades.set(1, cantCoronas);
+				int cantCoronas = puntosPropiedades[1]+ elementoActual.getCoronas();
+				puntosPropiedades[1] = cantCoronas;
 
 				// Derecha
 				puntajeTerritorios(elementoTipoTerreno, x + 1, y, puntosPropiedades);
@@ -200,16 +202,14 @@ public class Tablero {
 
 		if (elemento == null)
 			return 0;
-
-		// Puntos por propiedada y cantidad de coronas
-		List<Integer> puntosPropiedades = new ArrayList<Integer>(2);
-
-		puntosPropiedades.add(0);
-		puntosPropiedades.add(0);
+		
+		int[] puntosPropiedades = new int[2];
+		puntosPropiedades[0] = 0;
+		puntosPropiedades[1] = 0;
 
 		puntajeTerritorios(elemento.getDescripcion(), x, y, puntosPropiedades);
 
-		return (puntosPropiedades.get(0) * puntosPropiedades.get(1));
+		return (puntosPropiedades[0] * puntosPropiedades[1]);
 	}
 
 	public void mostrarTablero() {
@@ -223,5 +223,13 @@ public class Tablero {
 
 	public int getCantTerrenoColocado() {
 		return cantTerrenoColocado;
+	}
+	
+	public int getCantCorona() {
+		return cantCorona;
+	}
+
+	public void setCantCorona(int cantCorona) {
+		this.cantCorona = cantCorona;
 	}
 }

@@ -64,7 +64,15 @@ public class GestionJuego {
 			ganadores.add(jugadores.get(ganadoresPorTerreno.get(0)));
 			return ganadores;
 		}
-
+		
+		List<Jugador> ganaPorCorona = obtenerGanadoresPorCantCoronas();
+		
+		if (ganaPorCorona.size() == 1) {
+			System.out.println("Ganó " + jugadores.get(ganadoresPorTerreno.get(0)).getNombre());
+			ganadores.add(ganaPorCorona.get(0));
+			return ganadores;
+		}
+		
 		// Mas de un ganador por terreno
 		System.out.println("No se puede desempatar");
 		System.out.println("Los Ganadores son:");
@@ -119,6 +127,26 @@ public class GestionJuego {
 		}
 
 		return ganadoresPorTerreno;
+	}
+	
+	
+	public List<Jugador> obtenerGanadoresPorCantCoronas(){
+		
+		int maximo = Integer.MIN_VALUE;
+		ArrayList<Jugador> ganadores = new ArrayList<Jugador>();
+		for (Jugador jugador : jugadores) {
+			if(maximo < jugador.getTablero().getCantCorona()) {
+				maximo = jugador.getTablero().getCantCorona();
+				ganadores.clear();
+				ganadores.add(jugador);
+			}
+			else {
+				if(maximo == jugador.getTablero().getCantCorona())
+					ganadores.add(jugador);
+			}
+		}
+		this.jugadores.get(0).getTablero().getCantCorona();
+		return ganadores;
 	}
 
 	public void ordenarJugadores() {
