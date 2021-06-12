@@ -139,18 +139,10 @@ public class Tablero {
 
 	public int puntajeTotal() {
 		int acumPuntos = 0;
-		int contTerritorios = 0;
-
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
-
-				int puntajePropiedad = contarPuntajeParcial(i, j);
+				int puntajePropiedad = calcularPuntajePreeliminar(i, j);
 				acumPuntos += puntajePropiedad;
-				if (puntajePropiedad > 0) {
-					contTerritorios++;
-					String tipo = tableroJugador[i][j].getDescripcion();
-					System.out.println(contTerritorios + "-" + tipo + "=" + puntajePropiedad + " puntos.\n");
-				}
 			}
 		}
 
@@ -161,42 +153,34 @@ public class Tablero {
 
 	private void puntajeTerritorios(String elementoTipoTerreno, int x, int y, int[] puntosPropiedades) {
 
-		if (!(x >= 0 && x < tableroJugador.length && y >= 0 && y < tableroJugador[x].length))
-			return;
+		if (x >= 0 && x < tableroJugador.length && y >= 0 && y < tableroJugador[x].length) {
+			Elemento elementoActual = tableroJugador[x][y];
+			if (elementoActual == null)
+				return;
+			if (!elementoActual.isComputado()) {
+				if (elementoActual.getDescripcion().equals(elementoTipoTerreno)) {
+					elementoActual.setComputado(true);
+					int acumPuntos = puntosPropiedades[0] + 1;
+					puntosPropiedades[0] = acumPuntos;
+					int cantCoronas = puntosPropiedades[1] + elementoActual.getCoronas();
+					puntosPropiedades[1] = cantCoronas;
+					// Derecha
+					puntajeTerritorios(elementoTipoTerreno, x + 1, y, puntosPropiedades);
 
-		Elemento elementoActual = tableroJugador[x][y];
+					// Izquierda
+					puntajeTerritorios(elementoTipoTerreno, x - 1, y, puntosPropiedades);
 
-		if (elementoActual == null)
-			return;
+					// Arriba
+					puntajeTerritorios(elementoTipoTerreno, x, y + 1, puntosPropiedades);
 
-		if (!elementoActual.isComputado()) {
-			if (elementoActual.getDescripcion().equals(elementoTipoTerreno)) {
-				elementoActual.setComputado(true);
-
-				int acumPuntos = puntosPropiedades[0] + 1;
-				puntosPropiedades[0] = acumPuntos;
-
-				int cantCoronas = puntosPropiedades[1] + elementoActual.getCoronas();
-				puntosPropiedades[1] = cantCoronas;
-
-				// Derecha
-				puntajeTerritorios(elementoTipoTerreno, x + 1, y, puntosPropiedades);
-
-				// Izquierda
-				puntajeTerritorios(elementoTipoTerreno, x - 1, y, puntosPropiedades);
-
-				// Arriba
-				puntajeTerritorios(elementoTipoTerreno, x, y + 1, puntosPropiedades);
-
-				// Abajo
-				puntajeTerritorios(elementoTipoTerreno, x, y - 1, puntosPropiedades);
+					// Abajo
+					puntajeTerritorios(elementoTipoTerreno, x, y - 1, puntosPropiedades);
+				}
 			}
-		} else
-			return;
-
+		}
 	}
 
-	private int contarPuntajeParcial(int x, int y) {
+	private int calcularPuntajePreeliminar(int x, int y) {
 
 		Elemento elemento = tableroJugador[x][y];
 
