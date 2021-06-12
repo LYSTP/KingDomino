@@ -10,6 +10,7 @@ public class Tablero {
 	private Elemento[][] tableroJugador = new Elemento[9][9];
 	private int cantTerrenoColocado = 0;
 	private int cantCorona = 0;
+	private int puntos;
 
 	// Se inicia un tablero con el castillo como pieza central
 	public Tablero() {
@@ -146,6 +147,7 @@ public class Tablero {
 
 		System.out.println("Puntaje Final:" + acumPuntos);
 
+		puntos = acumPuntos;
 		return acumPuntos;
 	}
 
@@ -212,4 +214,10 @@ public class Tablero {
 	public void setCantCorona(int cantCorona) {
 		this.cantCorona = cantCorona;
 	}
+
+	public int getPuntos() {
+		return puntos;
+	}
+	
+	
 }

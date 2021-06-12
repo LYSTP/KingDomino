@@ -100,6 +100,9 @@ public class GestionJuegoTest {
 		b.getBaraja().clear();
 		g.setBaraja(b);
 		g.iniciarPartida();
+		
+		assertEquals(9, j1.getTablero().getPuntos());
+		assertEquals(6, j2.getTablero().getPuntos());
 	}
 
 }
