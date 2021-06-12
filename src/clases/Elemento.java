@@ -4,7 +4,7 @@ public class Elemento implements Comparable<Elemento> {
 
 	private String descripcion;
 	private int coronas;
-	boolean computado=false;
+	boolean computado = false;  /// Si ya se calculo el puntaje.
 
 	private Elemento elemIzquierda;
 	private Elemento elemDerecha;

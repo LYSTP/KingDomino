@@ -113,7 +113,7 @@ public class GestionJuego {
 
 		System.out.println("Empate");
 		for (int i = 0; i < ganaPorPuntos.size(); i++) {
-			int cantTerreno = jugadores.get(ganaPorPuntos.get(0)).getCantTerrenoColocado();
+			int cantTerreno = jugadores.get(ganaPorPuntos.get(i)).getCantTerrenoColocado();
 			System.out.println(jugadores.get(i).getNombre() + ":" + cantTerreno);
 			if (cantTerreno > propiedadMasExtensa) {
 				propiedadMasExtensa = cantTerreno;
