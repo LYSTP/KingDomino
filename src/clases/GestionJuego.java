@@ -64,15 +64,15 @@ public class GestionJuego {
 			ganadores.add(jugadores.get(ganadoresPorTerreno.get(0)));
 			return ganadores;
 		}
-		
+
 		List<Jugador> ganaPorCorona = obtenerGanadoresPorCantCoronas(ganadoresPorTerreno);
-		
+
 		if (ganaPorCorona.size() == 1) {
 			System.out.println("Ganó por corona" + ganaPorCorona.get(0).getNombre());
 			ganadores.add(ganaPorCorona.get(0));
 			return ganadores;
 		}
-		
+
 		// Mas de un ganador por terreno
 		System.out.println("No se puede desempatar");
 		System.out.println("Los Ganadores son:");
@@ -128,20 +128,18 @@ public class GestionJuego {
 
 		return ganadoresPorTerreno;
 	}
-	
-	
-	public List<Jugador> obtenerGanadoresPorCantCoronas(List<Integer> jugadores){
-		
+
+	public List<Jugador> obtenerGanadoresPorCantCoronas(List<Integer> jugadores) {
+
 		int maximo = Integer.MIN_VALUE;
 		ArrayList<Jugador> ganadores = new ArrayList<Jugador>();
 		for (Integer jugador : jugadores) {
-			if(maximo < this.jugadores.get(jugador).getTablero().getCantCorona()){
+			if (maximo < this.jugadores.get(jugador).getTablero().getCantCorona()) {
 				maximo = this.jugadores.get(jugador).getTablero().getCantCorona();
 				ganadores.clear();
 				ganadores.add(this.jugadores.get(jugador));
-			}
-			else {
-				if(maximo == this.jugadores.get(jugador).getTablero().getCantCorona())
+			} else {
+				if (maximo == this.jugadores.get(jugador).getTablero().getCantCorona())
 					ganadores.add(this.jugadores.get(jugador));
 			}
 		}
@@ -181,5 +179,11 @@ public class GestionJuego {
 	public Baraja getBaraja() {
 		return this.baraja;
 	}
+
+	public void setBaraja(Baraja baraja) {
+		this.baraja = baraja;
+	}
+	
+	
 
 }

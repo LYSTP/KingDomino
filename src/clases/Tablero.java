@@ -12,7 +12,7 @@ public class Tablero {
 	private int totalBoardScore = 0;
 	private int cantTerrenoColocado = 0;
 	private int cantCorona = 0;
-	
+
 	// Se inicia un tablero con el castillo como pieza central
 	public Tablero() {
 		for (int i = 0; i < tableroJugador.length; i++) {
@@ -176,7 +176,7 @@ public class Tablero {
 				int acumPuntos = puntosPropiedades[0] + 1;
 				puntosPropiedades[0] = acumPuntos;
 
-				int cantCoronas = puntosPropiedades[1]+ elementoActual.getCoronas();
+				int cantCoronas = puntosPropiedades[1] + elementoActual.getCoronas();
 				puntosPropiedades[1] = cantCoronas;
 
 				// Derecha
@@ -202,7 +202,7 @@ public class Tablero {
 
 		if (elemento == null)
 			return 0;
-		
+
 		int[] puntosPropiedades = new int[2];
 		puntosPropiedades[0] = 0;
 		puntosPropiedades[1] = 0;
@@ -224,7 +224,7 @@ public class Tablero {
 	public int getCantTerrenoColocado() {
 		return cantTerrenoColocado;
 	}
-	
+
 	public int getCantCorona() {
 		return cantCorona;
 	}
