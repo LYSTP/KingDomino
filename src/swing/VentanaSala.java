@@ -12,7 +12,7 @@ public class VentanaSala extends JPanel{
 	public VentanaSala() throws IOException {
 		setPreferredSize(new Dimension(1920, 600));
 		setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
-		setLayout(new GridLayout(1, 2, 50, 10));
+		setLayout(new GridLayout(1, 2, 50, 0));
 		add(new TableroVista());
 		add(new TableroVista());
 	}

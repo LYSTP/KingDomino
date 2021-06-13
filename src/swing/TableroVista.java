@@ -32,10 +32,10 @@ public class TableroVista extends JPanel {
 	public void createButtonPanel() throws IOException {
 		Image imgCastillo = ImageIO.read(new File("DominoImg/Castillo.png"));
 		Image imgVacio = ImageIO.read(new File("DominoImg/Vacio.png"));
-		// Color cuando se hace focus en algun elemento del tipo button
+		// Color cuando se hace focus en algun elemento del tipo button, cuando hace click con el mouse
 		UIManager.put("Button.focus", Color.red);
-		
-		//Carga con imagen vacio y en el centro con la imagen castillo
+
+		// Carga con imagen vacio y en el centro con la imagen castillo
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				JButton temp = new JButton();
@@ -44,20 +44,6 @@ public class TableroVista extends JPanel {
 				if (i == 4 && j == 4) {
 					temp.setIcon(new ImageIcon(imgCastillo));
 				}
-
-//				temp.addMouseListener(new MouseAdapter() {
-//					@Override
-//					public void mouseEntered(MouseEvent e) {
-//
-//					}
-//				});
-//
-//				temp.addMouseListener(new MouseAdapter() {
-//					@Override
-//					public void mouseExited(MouseEvent e) {
-//						temp.setIcon(new ImageIcon(imgVacio));
-//					}
-//				});
 
 				add(temp);
 			}
