@@ -30,7 +30,7 @@ public class JuegoVista {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// Dimension del frame con la cual los elementos del tipo boton que forman la
 		// matriz muestran bien la imagen
-		frame.getContentPane().setPreferredSize(new Dimension(1600, 1600));
+		frame.getContentPane().setPreferredSize(new Dimension(1800,1020));
 		frame.setResizable(true);
 		añadir();
 		frame.add(panelLabels);

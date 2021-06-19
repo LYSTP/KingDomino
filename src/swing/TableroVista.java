@@ -26,14 +26,17 @@ public class TableroVista extends JPanel {
 
 	public TableroVista() throws IOException {
 		setBackground(Color.BLACK);
-		setLayout(new GridBagLayout());
+		setLayout(new GridLayout(9, 9));
 		setSize(new Dimension(100, 10));
 		createButtonPanel();
 	}
 
 	public void createButtonPanel() throws IOException {
 		Image imgCastillo = ImageIO.read(new File("DominoImg/Castillo.png"));
-		Image imgVacio = ImageIO.read(new File("DominoImg/Vacio.png"));
+		Image imgVacio = ImageIO.read(new File("DominoImg/Vacio.png"));			
+		Image newimgCastillo = imgCastillo.getScaledInstance(55, 95, java.awt.Image.SCALE_SMOOTH);
+		Image newimgVacio = imgVacio.getScaledInstance(55, 95, java.awt.Image.SCALE_SMOOTH);
+		
 		// Color cuando se hace focus en algun elemento del tipo button, cuando hace
 		// click con el mouse
 		UIManager.put("Button.focus", Color.red);
@@ -43,9 +46,12 @@ public class TableroVista extends JPanel {
 			for (int j = 0; j < 9; j++) {
 				JButton temp = new JButton();
 				temp.setPreferredSize(new Dimension(30, 30));
-				temp.setIcon(new ImageIcon(imgVacio));
-				if (i == 4 && j == 4) {
-					temp.setIcon(new ImageIcon(imgCastillo));
+				
+				temp.setIcon(new ImageIcon(newimgVacio));
+
+				if (i == 4 && j == 4) {	
+					
+					temp.setIcon(new ImageIcon(newimgCastillo));
 				}
 
 				add(temp);

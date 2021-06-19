@@ -2,6 +2,7 @@ package swing;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
@@ -19,9 +20,8 @@ public class DominosVista extends JPanel {
 //	JButton[] dominos = new JButton[11];
 
 	public DominosVista() throws IOException {
-		setBackground(Color.BLACK);
-		setLayout(new GridLayout(4, 6));
-		setSize(new Dimension(20, 20));
+		setBounds(getVisibleRect());
+		setLayout(new GridLayout(4, 2));
 		createButtonPanel();
 	}
 
@@ -36,11 +36,8 @@ public class DominosVista extends JPanel {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 2; j++) {
 				JButton temp = new JButton();
-				temp.setPreferredSize(new Dimension(15, 15));
-//				temp.setIcon(new ImageIcon(imgVacio));
-
-				temp.setIcon(new ImageIcon(imgCastillo));
-
+				Image newimg = imgCastillo.getScaledInstance(290, 220, java.awt.Image.SCALE_SMOOTH);
+				temp.setIcon(new ImageIcon(newimg));
 				add(temp);
 			}
 		}
