@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -21,12 +22,12 @@ import java.io.IOException;
 public class TableroVista extends JPanel {
 
 	private static final long serialVersionUID = 4208840669646898662L;
-	JButton[][] tablero = new JButton[9][9];
+//	JButton[][] tablero = new JButton[9][9];
 
 	public TableroVista() throws IOException {
 		setBackground(Color.BLACK);
-		setLayout(new GridLayout(9, 9));
-		setSize(new Dimension(540, 540));
+		setLayout(new GridBagLayout());
+		setSize(new Dimension(100, 10));
 		createButtonPanel();
 	}
 
@@ -41,7 +42,7 @@ public class TableroVista extends JPanel {
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				JButton temp = new JButton();
-				temp.setPreferredSize(new Dimension(60, 60));
+				temp.setPreferredSize(new Dimension(30, 30));
 				temp.setIcon(new ImageIcon(imgVacio));
 				if (i == 4 && j == 4) {
 					temp.setIcon(new ImageIcon(imgCastillo));

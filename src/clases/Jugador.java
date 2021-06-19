@@ -12,12 +12,16 @@ public class Jugador {
 
 	private boolean esTurno = false;
 	private int puntos = 0;
-	//private Tablero t;
-	
+	// private Tablero t;
+
 	public Jugador(int id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
 		this.tablero = new Tablero();
+	}
+
+	public Jugador() {
+		// TODO Auto-generated constructor stub
 	}
 
 	// De los 4 domino que se reparten (ordenados), se selecciona uno.
@@ -29,8 +33,7 @@ public class Jugador {
 		return dominoSeleccionado;
 	}
 
-	public boolean posicionarDominoEnTablero(CordenadasDomino elementoIzquierda,
-			CordenadasDomino elementoDerecha) {
+	public boolean posicionarDominoEnTablero(CordenadasDomino elementoIzquierda, CordenadasDomino elementoDerecha) {
 
 		return this.tablero.colocarDomino(this.dominoSeleccionado, elementoIzquierda, elementoDerecha);
 
@@ -61,13 +64,13 @@ public class Jugador {
 	}
 
 	public void setDominoSeleccionado(Domino domino) {
-		this.dominoSeleccionado = domino;	
+		this.dominoSeleccionado = domino;
 	}
-	
+
 	public Tablero getTablero() {
 		return tablero;
 	}
-	
+
 	public int getCantTerrenoColocado() {
 		return tablero.getCantTerrenoColocado();
 	}
@@ -75,7 +78,5 @@ public class Jugador {
 	public void setTablero(Tablero tablero) {
 		this.tablero = tablero;
 	}
-	
-	
 
 }
