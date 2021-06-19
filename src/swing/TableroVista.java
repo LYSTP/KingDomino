@@ -20,6 +20,7 @@ import java.io.IOException;
 
 public class TableroVista extends JPanel {
 
+	private static final long serialVersionUID = 4208840669646898662L;
 	JButton[][] tablero = new JButton[9][9];
 
 	public TableroVista() throws IOException {
@@ -32,7 +33,8 @@ public class TableroVista extends JPanel {
 	public void createButtonPanel() throws IOException {
 		Image imgCastillo = ImageIO.read(new File("DominoImg/Castillo.png"));
 		Image imgVacio = ImageIO.read(new File("DominoImg/Vacio.png"));
-		// Color cuando se hace focus en algun elemento del tipo button, cuando hace click con el mouse
+		// Color cuando se hace focus en algun elemento del tipo button, cuando hace
+		// click con el mouse
 		UIManager.put("Button.focus", Color.red);
 
 		// Carga con imagen vacio y en el centro con la imagen castillo

@@ -7,7 +7,9 @@ import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-public class VentanaSala extends JPanel{
+public class VentanaSala extends JPanel {
+
+	private static final long serialVersionUID = -2788412693894132693L;
 
 	public VentanaSala() throws IOException {
 		setPreferredSize(new Dimension(1920, 600));
