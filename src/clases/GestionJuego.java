@@ -28,13 +28,7 @@ public class GestionJuego {
 
 	public void iniciarPartida() {
 		if (jugadores.size() >= 2 && jugadores.size() <= 4) {
-			try {
-				JuegoVista juegoVista = new JuegoVista();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+	
 			while (!baraja.getBaraja().isEmpty()) {
 				ordenarJugadores();
 				Ronda.nuevaRonda(jugadores, baraja.repartir());

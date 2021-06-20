@@ -1,13 +1,26 @@
 package clases;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+
+import swing.JuegoVista;
 
 public class Ronda {
 
 	static Scanner reader = new Scanner(System.in);
 
 	public static void nuevaRonda(List<Jugador> jugadores, List<Domino> dominos) {
+		
+		
+		JuegoVista juegoVista = null;
+		try {
+			juegoVista = new JuegoVista(dominos);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 		for (Jugador jugador : jugadores) {
 			jugador.getTablero().mostrarTablero();
@@ -84,10 +97,12 @@ public class Ronda {
 	}
 
 	private static void turnoJugador(Jugador jugador, List<Domino> dominos) {
+		
 
 		System.out.println("Turno del jugador: " + jugador.getId() + " " + jugador.getNombre());
 
 		System.out.println("Elegir uno de los " + dominos.size() + " dominos disponibles: \n");
+
 		int i = 0;
 		for (Domino domino : dominos) {
 			i++;

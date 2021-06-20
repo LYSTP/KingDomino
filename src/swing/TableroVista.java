@@ -32,8 +32,8 @@ public class TableroVista extends JPanel {
 	}
 
 	public void createButtonPanel() throws IOException {
-		Image imgCastillo = ImageIO.read(new File("DominoImg/Castillo.png"));
-		Image imgVacio = ImageIO.read(new File("DominoImg/Vacio.png"));			
+		Image imgCastillo = ImageIO.read(new File("DominoImg/castillo.png"));
+		Image imgVacio = ImageIO.read(new File("DominoImg/vacio.png"));			
 		Image newimgCastillo = imgCastillo.getScaledInstance(55, 95, java.awt.Image.SCALE_SMOOTH);
 		Image newimgVacio = imgVacio.getScaledInstance(55, 95, java.awt.Image.SCALE_SMOOTH);
 		
