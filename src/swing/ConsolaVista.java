@@ -25,11 +25,12 @@ public class ConsolaVista extends JPanel {
 	
 	public void jugadorTurno(Jugador jugador) {	
 		textArea_1.setText("");
-		textArea_1.append("Turno del jugador: " + jugador.getId() + " " + jugador.getNombre() + "\n");
+		textArea_1.append("KINGDOMINO\n\n");
+		textArea_1.append("Turno del jugador: " + jugador.getId() + " " + jugador.getNombre() + "\n\n");
 		if(jugador.getId()==1) {
-			textArea_1.append("Tablero Izquierdo" + "\n");
+			textArea_1.append("Tablero Izquierdo" + "\n\n");
 		}else {
-			textArea_1.append("Tablero Derecho" + "\n");	
+			textArea_1.append("Tablero Derecho" + "\n\n");	
 		}
 		textArea_1.append("Elegir uno de los lados de los dominos disponibles para colocar");
 	}

@@ -83,8 +83,6 @@ public class DominosVista extends JPanel {
 		this.mano = mano;
 		createButtonPanel();
 	}
-	
-	
 
 	public void cargarDominosDisponibles(List<Domino> mano) {
 

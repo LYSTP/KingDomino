@@ -14,6 +14,7 @@ public class GestionJuego {
 	Baraja baraja;
 	List<Domino> mano;
 	private boolean primerTurno = true;
+	private boolean repartido = false;
 
 	public GestionJuego(List<Jugador> jugadores) {
 		this.jugadores = jugadores;
@@ -39,6 +40,7 @@ public class GestionJuego {
 				ordenarJugadores();
 				Ronda.nuevaRonda(jugadores, mano, baraja, juegoVista,esPrimeraRonda, this);
 				esPrimeraRonda=false;
+				setRepartido(false);
 			}
 		
 			} catch (IOException e) {
@@ -214,4 +216,15 @@ public class GestionJuego {
 	public void setPrimerTurno(boolean primerTurno) {
 		this.primerTurno = primerTurno;
 	}
+
+	public boolean isRepartido() {
+		return repartido;
+	}
+
+	public void setRepartido(boolean repartido) {
+		this.repartido = repartido;
+	}
+	
+	
+	
 }

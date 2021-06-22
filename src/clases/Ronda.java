@@ -17,6 +17,7 @@ public class Ronda {
 
 	private static int eleccionDomino = 0;
 	private static int eleccionDoominoNumeroElemen = 0;
+	private static List<Domino> dominos = new ArrayList<Domino>();
 
 	public static void nuevaRonda(List<Jugador> jugadores, List<Domino> mano, Baraja baraja, JuegoVista juegoVista,
 			boolean esPrimeraRonda, GestionJuego gestionJuego) {
@@ -33,6 +34,7 @@ public class Ronda {
 			jugador.getTablero().mostrarTablero();
 			System.out.println();
 
+			//Turno
 			turnoJugador(jugador, mano, baraja, juegoVista, esPrimeraRonda, gestionJuego);
 
 			System.out.println("Eligio el Domino: " + eleccionDomino);
@@ -85,199 +87,204 @@ public class Ronda {
 				String botonAnte = PosicionTableroListener.getNumeroBoton();
 
 				// while (state == false && cont < 5) {
-				System.out.println("Indique posición para elemento izquierdo del Domino ");
-				System.out.println("X: ");
+				while (state == false) {
+					System.out.println("Indique posición para elemento izquierdo del Domino ");
+					System.out.println("X: ");
 
-				// Coordenadas elemento izquierdo
-				juegoVista.getVs().getCv()
-						.mensajeDominoElemento("Indique posición para colocar el elemento del Domino seleccionado");
+					// Coordenadas elemento izquierdo
+					juegoVista.getVs().getCv()
+							.mensajeDominoElemento("Indique posición para colocar el elemento del Domino seleccionado");
 
-				while (PosicionTableroListener.getNumeroBoton() == botonAnte) {
+					while (PosicionTableroListener.getNumeroBoton() == botonAnte) {
 
-					try {
-						Thread.sleep(200);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
-
-				// Si eleigio elemento derecho primero el izquiero sera -1 (se tomo izquierdo
-				// primero siempre)
-				boolean eligioDerechoPirmero = false;
-
-				if (posicionImagen % 2 != 0) {
-					eligioDerechoPirmero = true;
-					eleccionDoominoNumeroElemen = posicionImagen - 1;
-				}
-
-				String posicionIzquierdo = PosicionTableroListener.getNumeroBoton();
-
-				String[] coordenadasIzquierdo;
-
-				coordenadasIzquierdo = posicionIzquierdo.split(",");
-
-				c1 = Integer.parseInt(coordenadasIzquierdo[0]);
-
-				// c1 = reader.nextInt();
-				// reader.nextLine();
-
-				System.out.println("Y: ");
-				// coordenadaElementoIzquierdo.setY(sc_iz.nextInt());
-
-				// f1 = reader.nextInt();
-				// reader.nextLine();
-
-				String[] coordenadasy;
-
-				coordenadasy = coordenadasIzquierdo[1].split(" ");
-
-				f1 = Integer.parseInt(coordenadasy[1]);
-
-				System.out.println("(X:" + c1 + ", " + "Y:" + f1 + ")");
-
-				// Coordenadas elemento derecho
-				juegoVista.getVs().getCv().mensajeDominoElemento("Indique posición para elemento derecho del Domino ");
-
-				System.out.println("Indique posición para elemento derecho del Domino ");
-				System.out.println("X: ");
-
-				// Para que simule la pausa del ingreso por teclado
-				// PosicionTableroListener.setNumeroBoton(null);
-				String PosicionAnterior = PosicionTableroListener.getNumeroBoton();
-
-				while (PosicionTableroListener.getNumeroBoton() == PosicionAnterior) {
-
-					try {
-						Thread.sleep(200);
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-				}
-
-				String posicionDerecho = PosicionTableroListener.getNumeroBoton();
-
-				String[] coordenadasDerecho;
-
-				coordenadasDerecho = posicionDerecho.split(",");
-
-				c2 = Integer.parseInt(coordenadasDerecho[0]);
-
-				// c2 = reader.nextInt();
-				// reader.nextLine();
-
-				System.out.println("Y: ");
-
-				String[] coordenadasYder;
-
-				coordenadasYder = coordenadasDerecho[1].split(" ");
-
-				f2 = Integer.parseInt(coordenadasYder[1]);
-
-				System.out.println("(X:" + c2 + ", " + "Y:" + f2 + ")");
-
-				// Se le suma uno a la posicion ya que es el elemento derecho (izquierdo mas 1
-				// da el elemento derecho del domino a colocar)
-				// juegoVista.getVs().getTablero_1().getPosicionTablero().get(Integer.parseInt(juegoVista.getVs().getTablero_1().getMapPosiciones().get(PosicionTableroListener.getNumeroBoton()))).setIcon(juegoVista.getVs().getDominoVista().getDominosAelegir().get(posicionImagen
-				// + 1).getIcon());
-
-				// f2 = reader.nextInt();
-				// reader.nextLine();
-
-				// verifico adyacencia
-				if (((Math.abs(c1 - c2) == 1 && f1 == f2) || (Math.abs(f2 - f1) == 1 && c1 == c2))) {
-
-					coordenadaElementoIzquierdo.setX(c1);
-					coordenadaElementoIzquierdo.setY(f1);
-					coordenadaElementoDerecho.setX(c2);
-					coordenadaElementoDerecho.setY(f2);
-
-					// verifico si se puede ubicar el domino
-					if (jugador.posicionarDominoEnTablero(coordenadaElementoIzquierdo, coordenadaElementoDerecho)) {
-						System.out.println("Se ubico el domino " + jugador.getDominoSeleccionado().toString() + " en ("
-								+ coordenadaElementoIzquierdo.getX() + ", " + coordenadaElementoIzquierdo.getY() + ") ("
-								+ coordenadaElementoDerecho.getX() + ", " + coordenadaElementoDerecho.getY() + ")");
-						state = true;
-
-						// Pinto si esta todo ok los elementos
-						// Veo que tabero pinto
-
-						if (jugador.getId() == 1) {
-							// Elemento izquiedo
-							juegoVista.getVs().getTablero_1().getPosicionTablero()
-									.get(Integer.parseInt(juegoVista.getVs().getTablero_1().getMapPosiciones()
-											.get(posicionIzquierdo)))
-									.setIcon(juegoVista.getVs().getDominoVista().getDominosTablero().get(posicionImagen)
-											.getIcon());
-
-							// Si el lado elegido es derecho la imagen esta en una posicion anterior sino el
-							// elegido es el izquiedo
-							// la imagen del derecho estara en izquierdo +1
-							if (eligioDerechoPirmero) {
-								juegoVista.getVs().getTablero_1().getPosicionTablero()
-										.get(Integer.parseInt(juegoVista.getVs().getTablero_1().getMapPosiciones()
-												.get(posicionDerecho)))
-										.setIcon(juegoVista.getVs().getDominoVista().getDominosTablero()
-												.get(eleccionDoominoNumeroElemen).getIcon());
-
-								eligioDerechoPirmero = false;
-							} else {
-								juegoVista.getVs().getTablero_1().getPosicionTablero()
-										.get(Integer.parseInt(juegoVista.getVs().getTablero_1().getMapPosiciones()
-												.get(posicionDerecho)))
-										.setIcon(juegoVista.getVs().getDominoVista().getDominosTablero()
-												.get(posicionImagen + 1).getIcon());
-
-							}
-
-						} else {
-
-							// Elemento izquiedo
-							juegoVista.getVs().getTablero_2().getPosicionTablero()
-									.get(Integer.parseInt(juegoVista.getVs().getTablero_2().getMapPosiciones()
-											.get(posicionIzquierdo)))
-									.setIcon(juegoVista.getVs().getDominoVista().getDominosTablero().get(posicionImagen)
-											.getIcon());
-
-							// Si el lado elegido es derecho la imagen esta en una posicion anterior sino el
-							// elegido es el izquiedo
-							// la imagen del derecho estara en izquierdo +1
-							if (eligioDerechoPirmero) {
-								juegoVista.getVs().getTablero_2().getPosicionTablero()
-										.get(Integer.parseInt(juegoVista.getVs().getTablero_2().getMapPosiciones()
-												.get(posicionDerecho)))
-										.setIcon(juegoVista.getVs().getDominoVista().getDominosTablero()
-												.get(eleccionDoominoNumeroElemen).getIcon());
-
-								eligioDerechoPirmero = false;
-							} else {
-								juegoVista.getVs().getTablero_2().getPosicionTablero()
-										.get(Integer.parseInt(juegoVista.getVs().getTablero_2().getMapPosiciones()
-												.get(posicionDerecho)))
-										.setIcon(juegoVista.getVs().getDominoVista().getDominosTablero()
-												.get(posicionImagen + 1).getIcon());
-
-							}
-
+						try {
+							Thread.sleep(200);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
 
-						// Limpio consola de swing
-						juegoVista.getVs().getCv().limpiaConsola();
+					}
 
+					// Si eleigio elemento derecho primero el izquiero sera -1 (se tomo izquierdo
+					// primero siempre)
+					boolean eligioDerechoPirmero = false;
+
+					if (posicionImagen % 2 != 0) {
+						eligioDerechoPirmero = true;
+						eleccionDoominoNumeroElemen = posicionImagen - 1;
+					}
+
+					String posicionIzquierdo = PosicionTableroListener.getNumeroBoton();
+
+					String[] coordenadasIzquierdo;
+
+					coordenadasIzquierdo = posicionIzquierdo.split(",");
+
+					c1 = Integer.parseInt(coordenadasIzquierdo[0]);
+
+					// c1 = reader.nextInt();
+					// reader.nextLine();
+
+					System.out.println("Y: ");
+					// coordenadaElementoIzquierdo.setY(sc_iz.nextInt());
+
+					// f1 = reader.nextInt();
+					// reader.nextLine();
+
+					String[] coordenadasy;
+
+					coordenadasy = coordenadasIzquierdo[1].split(" ");
+
+					f1 = Integer.parseInt(coordenadasy[1]);
+
+					System.out.println("(X:" + c1 + ", " + "Y:" + f1 + ")");
+
+					// Coordenadas elemento derecho
+					juegoVista.getVs().getCv()
+							.mensajeDominoElemento("Indique posición para elemento derecho del Domino ");
+
+					System.out.println("Indique posición para elemento derecho del Domino ");
+					System.out.println("X: ");
+
+					// Para que simule la pausa del ingreso por teclado
+					// PosicionTableroListener.setNumeroBoton(null);
+					String PosicionAnterior = PosicionTableroListener.getNumeroBoton();
+
+					while (PosicionTableroListener.getNumeroBoton() == PosicionAnterior) {
+
+						try {
+							Thread.sleep(200);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+					}
+
+					String posicionDerecho = PosicionTableroListener.getNumeroBoton();
+
+					String[] coordenadasDerecho;
+
+					coordenadasDerecho = posicionDerecho.split(",");
+
+					c2 = Integer.parseInt(coordenadasDerecho[0]);
+
+					// c2 = reader.nextInt();
+					// reader.nextLine();
+
+					System.out.println("Y: ");
+
+					String[] coordenadasYder;
+
+					coordenadasYder = coordenadasDerecho[1].split(" ");
+
+					f2 = Integer.parseInt(coordenadasYder[1]);
+
+					System.out.println("(X:" + c2 + ", " + "Y:" + f2 + ")");
+
+					// Se le suma uno a la posicion ya que es el elemento derecho (izquierdo mas 1
+					// da el elemento derecho del domino a colocar)
+					// juegoVista.getVs().getTablero_1().getPosicionTablero().get(Integer.parseInt(juegoVista.getVs().getTablero_1().getMapPosiciones().get(PosicionTableroListener.getNumeroBoton()))).setIcon(juegoVista.getVs().getDominoVista().getDominosAelegir().get(posicionImagen
+					// + 1).getIcon());
+
+					// f2 = reader.nextInt();
+					// reader.nextLine();
+
+					// verifico adyacencia
+					if (((Math.abs(c1 - c2) == 1 && f1 == f2) || (Math.abs(f2 - f1) == 1 && c1 == c2))) {
+
+						coordenadaElementoIzquierdo.setX(c1);
+						coordenadaElementoIzquierdo.setY(f1);
+						coordenadaElementoDerecho.setX(c2);
+						coordenadaElementoDerecho.setY(f2);
+
+						// verifico si se puede ubicar el domino
+						if (jugador.posicionarDominoEnTablero(coordenadaElementoIzquierdo, coordenadaElementoDerecho)) {
+							System.out.println("Se ubico el domino " + jugador.getDominoSeleccionado().toString()
+									+ " en (" + coordenadaElementoIzquierdo.getX() + ", "
+									+ coordenadaElementoIzquierdo.getY() + ") (" + coordenadaElementoDerecho.getX()
+									+ ", " + coordenadaElementoDerecho.getY() + ")");
+
+							state = true;
+
+							// Pinto si esta todo ok los elementos
+							// Veo que tabero pinto
+
+							// Tablero si es turno 1
+							if (jugador.getId() == 1) {
+								// Elemento izquiedo
+								juegoVista.getVs().getTablero_1().getPosicionTablero()
+										.get(Integer.parseInt(juegoVista.getVs().getTablero_1().getMapPosiciones()
+												.get(posicionIzquierdo)))
+										.setIcon(juegoVista.getVs().getDominoVista().getDominosTablero()
+												.get(posicionImagen).getIcon());
+
+								// Si el lado elegido es derecho la imagen esta en una posicion anterior sino el
+								// elegido es el izquiedo
+								// la imagen del derecho estara en izquierdo +1
+								if (eligioDerechoPirmero) {
+									juegoVista.getVs().getTablero_1().getPosicionTablero()
+											.get(Integer.parseInt(juegoVista.getVs().getTablero_1().getMapPosiciones()
+													.get(posicionDerecho)))
+											.setIcon(juegoVista.getVs().getDominoVista().getDominosTablero()
+													.get(eleccionDoominoNumeroElemen).getIcon());
+
+									eligioDerechoPirmero = false;
+								} else {
+									juegoVista.getVs().getTablero_1().getPosicionTablero()
+											.get(Integer.parseInt(juegoVista.getVs().getTablero_1().getMapPosiciones()
+													.get(posicionDerecho)))
+											.setIcon(juegoVista.getVs().getDominoVista().getDominosTablero()
+													.get(posicionImagen + 1).getIcon());
+
+								}
+								// Tablero si es turno 2
+							} else {
+
+								// Elemento izquiedo
+								juegoVista.getVs().getTablero_2().getPosicionTablero()
+										.get(Integer.parseInt(juegoVista.getVs().getTablero_2().getMapPosiciones()
+												.get(posicionIzquierdo)))
+										.setIcon(juegoVista.getVs().getDominoVista().getDominosTablero()
+												.get(posicionImagen).getIcon());
+
+								// Si el lado elegido es derecho la imagen esta en una posicion anterior sino el
+								// elegido es el izquiedo
+								// la imagen del derecho estara en izquierdo +1
+								if (eligioDerechoPirmero) {
+									juegoVista.getVs().getTablero_2().getPosicionTablero()
+											.get(Integer.parseInt(juegoVista.getVs().getTablero_2().getMapPosiciones()
+													.get(posicionDerecho)))
+											.setIcon(juegoVista.getVs().getDominoVista().getDominosTablero()
+													.get(eleccionDoominoNumeroElemen).getIcon());
+
+									eligioDerechoPirmero = false;
+								} else {
+									juegoVista.getVs().getTablero_2().getPosicionTablero()
+											.get(Integer.parseInt(juegoVista.getVs().getTablero_2().getMapPosiciones()
+													.get(posicionDerecho)))
+											.setIcon(juegoVista.getVs().getDominoVista().getDominosTablero()
+													.get(posicionImagen + 1).getIcon());
+
+								}
+
+							}
+
+							// Limpio consola de swing
+							juegoVista.getVs().getCv().limpiaConsola();
+
+						} else {
+							jugador.getTablero().mostrarTablero();
+							System.out.println("No se pudo ubicar domino\n");
+							System.out.println("Cometiste " + ++cont + "/5 errores");
+						}
 					} else {
 						jugador.getTablero().mostrarTablero();
-						System.out.println("No se pudo ubicar domino\n");
 						System.out.println("Cometiste " + ++cont + "/5 errores");
+						System.out.println("Poner coordenadas adyacentes");
 					}
-				} else {
-					jugador.getTablero().mostrarTablero();
-					System.out.println("Cometiste " + ++cont + "/5 errores");
-					System.out.println("Poner coordenadas adyacentes");
-				}
-				// } // Agregar un if para verificar disponibilidad en el tablero.
+				} // Agregar un if para verificar disponibilidad en el tablero.
 
 				// sc_iz.close();
 				// sc_der.close();
@@ -293,15 +300,16 @@ public class Ronda {
 	private static void turnoJugador(Jugador jugador, List<Domino> mano, Baraja baraja, JuegoVista juegoVista,
 			boolean esPrimeraRonda, GestionJuego gestionJuego) {
 
-		List<Domino> dominos = new ArrayList<Domino>();
+		//List<Domino> dominos = new ArrayList<Domino>();
 
 		// En la primera ronda ya reparti fuera en la vista
 		if (esPrimeraRonda) {
 			gestionJuego.setPrimerTurno(false);
 			dominos = mano;
-		} else {
+		} else if (!gestionJuego.isRepartido()) {
 			dominos.clear();
 			dominos = baraja.repartir();
+			gestionJuego.setRepartido(true);
 		}
 
 		System.out.println("Turno del jugador: " + jugador.getId() + " " + jugador.getNombre());
@@ -342,7 +350,7 @@ public class Ronda {
 		while (BotonPulsadoListener.getNumeroBoton() == anterior) {
 
 			try {
-				Thread.sleep(400);
+				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -394,6 +402,8 @@ public class Ronda {
 		}
 
 		jugador.setDominoSeleccionado(dominos.get(eleccionDomino - 1));
+
+		// Avisar disponibilidad de dominos
 
 		dominos.remove(eleccionDomino - 1);
 
