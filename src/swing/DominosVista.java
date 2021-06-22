@@ -111,5 +111,17 @@ public class DominosVista extends JPanel {
 		}
 	}
 	
+
+
+
+	public List<JButton> getDominosAelegir() {
+		return dominosAelegir;
+	}
+
+
+
+	public void setDominosAelegir(List<JButton> dominosAelegir) {
+		this.dominosAelegir = dominosAelegir;
+	}
 	
 }

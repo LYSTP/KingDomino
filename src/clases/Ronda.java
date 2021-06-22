@@ -1,5 +1,6 @@
 package clases;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
@@ -12,6 +13,8 @@ import swing.VentanaSala;
 public class Ronda {
 
 	static Scanner reader = new Scanner(System.in);
+
+	private static int eleccionDomino = 0;
 
 	public static void nuevaRonda(List<Jugador> jugadores, List<Domino> dominos) {
 		
@@ -28,7 +31,33 @@ public class Ronda {
 		for (Jugador jugador : jugadores) {
 			jugador.getTablero().mostrarTablero();
 			System.out.println();
+						
 			turnoJugador(jugador, dominos, juegoVista);
+			
+			System.out.println("Eligio el Domino: " + eleccionDomino);
+			
+			int posicionImagen = 0;
+			
+			switch (eleccionDomino) {	
+			case 1:
+				posicionImagen = 0;
+				break;
+			case 2:
+				posicionImagen = 2;
+				break;
+			case 3:
+				posicionImagen = 4;
+				break;
+			case 4:
+				posicionImagen = 6;
+				break;
+			}
+			
+			//Recupero imagen elemento izquierdo de domino elegido para poder posicionar en tablero
+			//Image elemIzquierdoSelec = (Image) juegoVista.getVs().getDominoVista().getDominosAelegir().get(posicionImagen).getIcon();
+			
+			juegoVista.getVs().getDominoVista().getDominosAelegir().get(posicionImagen).getIcon();
+
 
 			if (jugador.getDominoSeleccionado() != null) {
 				CordenadasDomino coordenadaElementoIzquierdo = new CordenadasDomino();
@@ -58,11 +87,11 @@ public class Ronda {
 					
 					}
 					
-					String x = PosicionTableroListener.getNumeroBoton();
+					String posicionIzquierdo = PosicionTableroListener.getNumeroBoton();
 					
 					String[] coordenadasIzquierdo;
 					
-					coordenadasIzquierdo = x.split(",");
+					coordenadasIzquierdo = posicionIzquierdo.split(",");
 										
 					c1=Integer.parseInt(coordenadasIzquierdo[0]);
 					
@@ -83,7 +112,7 @@ public class Ronda {
 					f1=Integer.parseInt(coordenadasy[1]);
 					
 					System.out.println("(X:" + c1 + ", " + "Y:" + f1 + ")");
-					
+
 					//Coordenadas elemento derecho
 					juegoVista.getVs().getCv().mensajeDominoElemento("Indique posición para elemento derecho del Domino ");
 										
@@ -105,11 +134,11 @@ public class Ronda {
 					
 					}
 					
-					String xDerecho = PosicionTableroListener.getNumeroBoton();
+					String posicionDerecho= PosicionTableroListener.getNumeroBoton();
 					
 					String[] coordenadasDerecho;
 					
-					coordenadasDerecho = xDerecho.split(",");
+					coordenadasDerecho = posicionDerecho.split(",");
 										
 					c2=Integer.parseInt(coordenadasDerecho[0]);
 									
@@ -125,6 +154,9 @@ public class Ronda {
 					f2=Integer.parseInt(coordenadasYder[1]);
 					
 					System.out.println("(X:" + c2 + ", " + "Y:" + f2 + ")");
+					
+					//Se le suma uno a la posicion ya que es el elemento derecho (izquierdo mas 1 da el elemento derecho del domino a colocar)					
+					//juegoVista.getVs().getTablero_1().getPosicionTablero().get(Integer.parseInt(juegoVista.getVs().getTablero_1().getMapPosiciones().get(PosicionTableroListener.getNumeroBoton()))).setIcon(juegoVista.getVs().getDominoVista().getDominosAelegir().get(posicionImagen + 1).getIcon());
 			
 					//f2 = reader.nextInt();
 					//reader.nextLine();
@@ -144,6 +176,12 @@ public class Ronda {
 									+ coordenadaElementoIzquierdo.getY() + ") (" + coordenadaElementoDerecho.getX()
 									+ ", " + coordenadaElementoDerecho.getY() + ")");
 							state = true;
+							
+							//Pinto si esta todo ok los elementos
+							juegoVista.getVs().getTablero_1().getPosicionTablero().get(Integer.parseInt(juegoVista.getVs().getTablero_1().getMapPosiciones().get(posicionIzquierdo))).setIcon(juegoVista.getVs().getDominoVista().getDominosAelegir().get(posicionImagen).getIcon());
+							
+							juegoVista.getVs().getTablero_1().getPosicionTablero().get(Integer.parseInt(juegoVista.getVs().getTablero_1().getMapPosiciones().get(posicionDerecho))).setIcon(juegoVista.getVs().getDominoVista().getDominosAelegir().get(posicionImagen + 1).getIcon());
+							
 							
 							//Limpio consola de swing
 							juegoVista.getVs().getCv().limpiaConsola();
@@ -168,42 +206,39 @@ public class Ronda {
 				System.out.println("El jugador no ha seleccionado un domino");
 
 		}
+
 	}
 
 	private static void turnoJugador(Jugador jugador, List<Domino> dominos, JuegoVista juegoVista) {
-		
 
 		System.out.println("Turno del jugador: " + jugador.getId() + " " + jugador.getNombre());
-	
+
 		System.out.println("Elegir uno de los " + dominos.size() + " dominos disponibles: \n");
 
 		juegoVista.getVs().getCv().jugadorTurno(jugador);
-		
+
 		int i = 0;
 		for (Domino domino : dominos) {
 			i++;
 			System.out.println(i + ")" + domino.toString());
 		}
 		System.out.println();
-		
-		
-		//Para parte grafica se espera que seleccione un domino 
-		while(BotonPulsadoListener.getNumeroBoton() == null) {
-			
-			 try {
+
+		// Para parte grafica se espera que seleccione un domino
+		while (BotonPulsadoListener.getNumeroBoton() == null) {
+
+			try {
 				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
+
 		}
-		
-		
+
 		Integer.parseInt(BotonPulsadoListener.getNumeroBoton());
-		System.out.println("Sali");
-		
-		
+		System.out.println("ok");
+
 //		int entrada = reader.nextInt();
 //		reader.nextLine();
 //		while (!(entrada >= 1 && entrada <= dominos.size())) {
@@ -212,11 +247,11 @@ public class Ronda {
 //			entrada = reader.nextInt();
 //			reader.nextLine();
 //		}
-		
-		int eleccionDomino = 0;
-		
-		switch(Integer.parseInt(BotonPulsadoListener.getNumeroBoton())) {
-		
+
+		// int eleccionDomino = 0;
+
+		switch (Integer.parseInt(BotonPulsadoListener.getNumeroBoton())) {
+
 		case 1:
 			eleccionDomino = 1;
 			break;
@@ -242,7 +277,6 @@ public class Ronda {
 			eleccionDomino = 4;
 			break;
 		}
-				
 
 		jugador.setDominoSeleccionado(dominos.get(eleccionDomino - 1));
 
@@ -250,4 +284,5 @@ public class Ronda {
 
 		// reader.close();
 	}
+
 }

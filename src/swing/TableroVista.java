@@ -2,6 +2,7 @@ package swing;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
@@ -22,7 +23,9 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TableroVista extends JPanel {
 
@@ -33,11 +36,104 @@ public class TableroVista extends JPanel {
 			b23, b24, b25, b26, b27, b28, b29, b30, b31, b32, b33, b34, b35, b36, b37, b38, b39, b40, b41, b42, b43,
 			b44, b45, b46, b47, b48, b49, b50, b51, b52, b53, b54, b55, b56, b57, b58, b59, b60, b61, b62, b63, b64,
 			b65, b66, b67, b68, b69, b70, b71, b72, b73, b74, b75, b76, b77, b78, b79, b80, b81;
-	
+
 	List<JButton> posicionTablero = new ArrayList<JButton>();
+	
+	Map<String, String> mapPosiciones = new HashMap<String, String>();
 
 	public TableroVista(Jugador jugador) throws IOException {
 		setBackground(Color.BLACK);
+
+		
+		mapPosiciones.put("0, 0", "0");
+		mapPosiciones.put("0, 1", "1");
+		mapPosiciones.put("0, 2", "2");
+		mapPosiciones.put("0, 3", "3");
+		mapPosiciones.put("0, 4", "4");
+		mapPosiciones.put("0, 5", "5");
+		mapPosiciones.put("0, 6", "6");
+		mapPosiciones.put("0, 7", "7");
+		mapPosiciones.put("0, 8", "8");
+
+		mapPosiciones.put("1, 0", "9");
+		mapPosiciones.put("1, 1", "10");
+		mapPosiciones.put("1, 2", "11");
+		mapPosiciones.put("1, 3", "12");
+		mapPosiciones.put("1, 4", "13");
+		mapPosiciones.put("1, 5", "14");
+		mapPosiciones.put("1, 6", "15");
+		mapPosiciones.put("1, 7", "16");
+		mapPosiciones.put("1, 8", "17");
+
+		mapPosiciones.put("2, 0", "18");
+		mapPosiciones.put("2, 1", "19");
+		mapPosiciones.put("2, 2", "20");
+		mapPosiciones.put("2, 3", "21");
+		mapPosiciones.put("2, 4", "22");
+		mapPosiciones.put("2, 5", "23");
+		mapPosiciones.put("2, 6", "24");
+		mapPosiciones.put("2, 7", "25");
+		mapPosiciones.put("2, 8", "26");
+
+		mapPosiciones.put("3, 0", "27");
+		mapPosiciones.put("3, 1", "28");
+		mapPosiciones.put("3, 2", "29");
+		mapPosiciones.put("3, 3", "30");
+		mapPosiciones.put("3, 4", "31");
+		mapPosiciones.put("3, 5", "32");
+		mapPosiciones.put("3, 6", "33");
+		mapPosiciones.put("3, 7", "34");
+		mapPosiciones.put("3, 8", "35");
+
+		mapPosiciones.put("4, 0", "36");
+		mapPosiciones.put("4, 1", "37");
+		mapPosiciones.put("4, 2", "38");
+		mapPosiciones.put("4, 3", "39");
+		mapPosiciones.put("4, 4", "40");
+		mapPosiciones.put("4, 5", "41");
+		mapPosiciones.put("4, 6", "42");
+		mapPosiciones.put("4, 7", "43");
+		mapPosiciones.put("4, 8", "44");
+
+		mapPosiciones.put("5, 0", "45");
+		mapPosiciones.put("5, 1", "46");
+		mapPosiciones.put("5, 2", "47");
+		mapPosiciones.put("5, 3", "48");
+		mapPosiciones.put("5, 4", "49");
+		mapPosiciones.put("5, 5", "50");
+		mapPosiciones.put("5, 6", "51");
+		mapPosiciones.put("5, 7", "52");
+		mapPosiciones.put("5, 8", "53");
+
+		mapPosiciones.put("6, 0", "54");
+		mapPosiciones.put("6, 1", "55");
+		mapPosiciones.put("6, 2", "56");
+		mapPosiciones.put("6, 3", "57");
+		mapPosiciones.put("6, 4", "58");
+		mapPosiciones.put("6, 5", "59");
+		mapPosiciones.put("6, 6", "60");
+		mapPosiciones.put("6, 7", "61");
+		mapPosiciones.put("6, 8", "62");
+
+		mapPosiciones.put("7, 0", "63");
+		mapPosiciones.put("7, 1", "64");
+		mapPosiciones.put("7, 2", "65");
+		mapPosiciones.put("7, 3", "66");
+		mapPosiciones.put("7, 4", "67");
+		mapPosiciones.put("7, 5", "68");
+		mapPosiciones.put("7, 6", "69");
+		mapPosiciones.put("7, 7", "70");
+		mapPosiciones.put("7, 8", "71");
+
+		mapPosiciones.put("8, 0", "72");
+		mapPosiciones.put("8, 1", "73");
+		mapPosiciones.put("8, 2", "74");
+		mapPosiciones.put("8, 3", "75");
+		mapPosiciones.put("8, 4", "76");
+		mapPosiciones.put("8, 5", "77");
+		mapPosiciones.put("8, 6", "78");
+		mapPosiciones.put("8, 7", "79");
+		mapPosiciones.put("8, 8", "80");
 
 		b1 = new JButton("0, 0");
 		b2 = new JButton("0, 1");
@@ -246,6 +342,22 @@ public class TableroVista extends JPanel {
 				posicion++;
 			}
 		}
+	}
+
+	public List<JButton> getPosicionTablero() {
+		return posicionTablero;
+	}
+
+	public void setPosicionTablero(List<JButton> posicionTablero) {
+		this.posicionTablero = posicionTablero;
+	}
+
+	public Map<String, String> getMapPosiciones() {
+		return mapPosiciones;
+	}
+
+	public void setMapPosiciones(Map<String, String> mapPosiciones) {
+		this.mapPosiciones = mapPosiciones;
 	}
 
 }
