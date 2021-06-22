@@ -29,14 +29,38 @@ public class DominosVista extends JPanel {
 	private String elementoDerecho;
 	
 	List<String> elementosLista = null;
-
-
+	
+	
+	private JButton b1, b2, b3, b4, b5, b6, b7, b8;
+	List<JButton> dominosAelegir = new ArrayList<JButton>();
+	
 	public DominosVista(List<Domino> mano) throws IOException {
 		setBounds(getVisibleRect());
 		setLayout(new GridLayout(4, 2));
+		b1 = new JButton("1");
+		b2 = new JButton("2");
+		b3 = new JButton("3");
+		b4 = new JButton("4");
+		b5 = new JButton("5");
+		b6 = new JButton("6");
+		b7 = new JButton("7");
+		b8 = new JButton("8");
+		
+		dominosAelegir.add(b1);
+		dominosAelegir.add(b2);
+		dominosAelegir.add(b3);
+		dominosAelegir.add(b4);
+		dominosAelegir.add(b5);
+		dominosAelegir.add(b6);
+		dominosAelegir.add(b7);
+		dominosAelegir.add(b8);
+
+		
 		this.mano = mano;
 		createButtonPanel();
 	}
+	
+	
 
 	public void cargarDominosDisponibles(List<Domino> mano) {
 
@@ -73,17 +97,19 @@ public class DominosVista extends JPanel {
 				ruta = "DominoImg/" + this.elementosLista.get(posElem) + ".png";
 
 				Image elementoDomino = ImageIO.read(new File(ruta));
-
-				JButton temp = new JButton();
-				Image newimg = elementoDomino.getScaledInstance(290, 220, java.awt.Image.SCALE_SMOOTH);
-				temp.setIcon(new ImageIcon(newimg));
+				
+				Image newimg = elementoDomino.getScaledInstance(220, 220, java.awt.Image.SCALE_SMOOTH);
+				dominosAelegir.get(posElem).setIcon(new ImageIcon(newimg));
+				dominosAelegir.get(posElem).addActionListener(new BotonPulsadoListener());
+				
+				add(dominosAelegir.get(posElem));	
 				
 				posElem++;
-				
-				add(temp);				
 				
 			}
 			
 		}
 	}
+	
+	
 }

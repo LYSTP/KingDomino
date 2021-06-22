@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import clases.Domino;
+import clases.Jugador;
 
 public class JuegoVista {
 
@@ -16,14 +17,20 @@ public class JuegoVista {
 	private JFrame frame = new JFrame();
 	JPanel panelLabels = new JPanel();
 	private List<Domino> mano;
+	private List<Jugador> jugadores;
+	private Jugador jugador_1;
+	private Jugador jugador_2;
+	private VentanaSala vs;
 
-	public JuegoVista(List<Domino> mano) throws IOException {
+	public JuegoVista(List<Jugador> jugadores, List<Domino> mano) throws IOException {
 		this.mano = mano;
+		this.jugadores = jugadores;
 		inicializarFrame();		
 	}
 	
 	public JuegoVista() throws IOException{
 		this.mano = mano;
+		this.jugadores = jugadores;
 		inicializarFrame();	
 	}
 
@@ -32,7 +39,7 @@ public class JuegoVista {
 	}
 
 	private void añadir() throws IOException {
-		panelLabels.add(new VentanaSala(this.mano), "3");
+		panelLabels.add(vs = new VentanaSala(this.mano,this.jugadores), "4");
 	}
 	
 	private void inicializarFrame() throws IOException {
@@ -48,5 +55,13 @@ public class JuegoVista {
 		frame.setVisible(true);
 	}
 
+	public VentanaSala getVs() {
+		return vs;
+	}
+
+	public void setVs(VentanaSala vs) {
+		this.vs = vs;
+	}
+	
 
 }
