@@ -12,7 +12,8 @@ public class GestionJuego {
 	List<Jugador> jugadores;
 	Jugador jugadorEnTurno;
 	Baraja baraja;
-	boolean primerTurno = true;
+	List<Domino> mano;
+	private boolean primerTurno = true;
 
 	public GestionJuego(List<Jugador> jugadores) {
 		this.jugadores = jugadores;
@@ -28,13 +29,26 @@ public class GestionJuego {
 
 	public void iniciarPartida() {
 		if (jugadores.size() >= 2 && jugadores.size() <= 4) {
-	
+			
+			try {
+				setMano(baraja.repartir());
+				boolean esPrimeraRonda=true;
+				JuegoVista juegoVista = new JuegoVista(this);
+
 			while (!baraja.getBaraja().isEmpty()) {
 				ordenarJugadores();
-				Ronda.nuevaRonda(jugadores, baraja.repartir());
+				Ronda.nuevaRonda(jugadores, mano, baraja, juegoVista,esPrimeraRonda, this);
+				esPrimeraRonda=false;
 			}
+		
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			// finaliza la partida
 			obtenerGanador(calcularPuntajes());
+			
 		} else
 			System.out.println("Cantidad de jugadores no valida.");
 	}
@@ -185,4 +199,19 @@ public class GestionJuego {
 		this.baraja = baraja;
 	}
 
+	public List<Domino> getMano() {
+		return mano;
+	}
+
+	public void setMano(List<Domino> mano) {
+		this.mano = mano;
+	}
+
+	public boolean isPrimerTurno() {
+		return primerTurno;
+	}
+
+	public void setPrimerTurno(boolean primerTurno) {
+		this.primerTurno = primerTurno;
+	}
 }

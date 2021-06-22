@@ -20,7 +20,7 @@ public class VentanaSala extends JPanel {
 	private TableroVista tablero_2;
 
 	public VentanaSala(List<Domino> mano, List<Jugador> jugadores) throws IOException {
-		setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+		setBorder(BorderFactory.createEmptyBorder(50, 10, 50, 10));
 		setLayout(new GridLayout(1, 4, 50, 50));
 		add(tablero_1 = new TableroVista(jugadores.get(0)));
 		add(tablero_2 = new TableroVista(jugadores.get(1)));

@@ -28,7 +28,7 @@ public class Baraja {
 		List<Domino> salida = new ArrayList<Domino>();
 		int cantDominos = 4; // se reparten 4 dominos en la mesa
 //		int i = this.dominosRepartidos, cambiamos por 0 porque si no se va de los limites del array
-		for (int i = 0; i < this.dominosRepartidos + cantDominos; i++) {
+		for (int i = 0; i < cantDominos; i++) {
 			salida.add(this.dominos.get(i));
 		}
 
