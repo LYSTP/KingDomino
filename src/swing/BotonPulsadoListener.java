@@ -11,7 +11,7 @@ public class BotonPulsadoListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Has pulsado el botón " + e.getActionCommand());
 		try {
-			Thread.sleep(100);
+			Thread.sleep(200);
 			numeroBoton = e.getActionCommand();
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block

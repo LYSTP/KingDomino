@@ -30,7 +30,7 @@ public class ConsolaVista extends JPanel {
 		if(jugador.getId()==1) {
 			textArea_1.append("Tablero IZQUIERDO" + "\n\n");
 		}else {
-			textArea_1.append("Tablero Derecho" + "\n\n");	
+			textArea_1.append("Tablero DERECHO" + "\n\n");	
 		}
 		textArea_1.append("Elegir uno de los lados de los dominos disponibles para colocar");
 	}

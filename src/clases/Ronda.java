@@ -138,7 +138,7 @@ public class Ronda {
 					// Coordenadas elemento derecho
 					juegoVista.getVs().getCv().mensajeDominoElemento("Indique posición para el elemento siguiente del Domino ");
 
-
+					System.out.println("Esperenado...");
 					System.out.println("Indique posición para elemento derecho del Domino ");
 					System.out.println("X: ");
 
@@ -328,7 +328,7 @@ public class Ronda {
 
 		System.out.println("Turno del jugador: " + jugador.getId() + " " + jugador.getNombre());
 
-		System.out.println("Elegir uno de los " + dominos.size() + " dominos disponibles: \n");
+		System.out.println("|s " + dominos.size() + " dominos disponibles: \n");
 
 		// ver como refrescar elementos de la derecha a elegir quedan fijos no refresca
 		// pantalla
@@ -350,15 +350,17 @@ public class Ronda {
 
 		juegoVista.getVs().getCv().jugadorTurno(jugador);
 
-		// Para saber si eligio otro domino o aun no
-		String anterior = BotonPulsadoListener.getNumeroBoton();
-
 		int i = 0;
 		for (Domino domino : dominos) {
 			i++;
 			System.out.println(i + ")" + domino.toString());
 		}
 		System.out.println();
+		
+		System.out.println("Esperando seleccion de Domino...  \n");
+		
+		// Para saber si eligio otro domino o aun no
+		String anterior = BotonPulsadoListener.getNumeroBoton();
 
 		// Para parte grafica se espera que seleccione un domino
 		while (BotonPulsadoListener.getNumeroBoton() == anterior) {
@@ -416,7 +418,7 @@ public class Ronda {
 		}
 		
 		//Varia tamaño de mano
-		if(dominos.size()==4) {
+		if(dominos.size()==4 || (eleccionDomino - 1) == 0) {
 		jugador.setDominoSeleccionado(dominos.get(eleccionDomino - 1));
 		dominos.remove(eleccionDomino - 1);
 		}else {
