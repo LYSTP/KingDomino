@@ -316,7 +316,7 @@ public class TableroVista extends JPanel {
 		Image imgCastillo = ImageIO.read(new File("DominoImg/castillo.png"));
 		Image imgVacio = ImageIO.read(new File("DominoImg/vacio.png"));
 		Image newimgCastillo = imgCastillo.getScaledInstance(58, 100, java.awt.Image.SCALE_SMOOTH);
-		Image newimgVacio = imgVacio.getScaledInstance(58, 100, java.awt.Image.SCALE_SMOOTH);
+		Image newimgVacio = imgVacio.getScaledInstance(58, 95, java.awt.Image.SCALE_SMOOTH);
 
 		// Color cuando se hace focus en algun elemento del tipo button, cuando hace
 		// click con el mouse

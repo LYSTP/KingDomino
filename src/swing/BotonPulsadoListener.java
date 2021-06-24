@@ -10,7 +10,14 @@ public class BotonPulsadoListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Has pulsado el botón " + e.getActionCommand());
-		numeroBoton = e.getActionCommand();
+		try {
+			Thread.sleep(100);
+			numeroBoton = e.getActionCommand();
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 	}
 
 	public static String getNumeroBoton() {

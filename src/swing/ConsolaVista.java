@@ -28,7 +28,7 @@ public class ConsolaVista extends JPanel {
 		textArea_1.append("KINGDOMINO\n\n");
 		textArea_1.append("Turno del jugador: " + jugador.getId() + " " + jugador.getNombre() + "\n\n");
 		if(jugador.getId()==1) {
-			textArea_1.append("Tablero Izquierdo" + "\n\n");
+			textArea_1.append("Tablero IZQUIERDO" + "\n\n");
 		}else {
 			textArea_1.append("Tablero Derecho" + "\n\n");	
 		}

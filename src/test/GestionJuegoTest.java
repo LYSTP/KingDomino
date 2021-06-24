@@ -19,44 +19,44 @@ import clases.Elemento.tiposElementos;
 
 public class GestionJuegoTest {
 
-	@Test
-	public void testCrearGestionJuego() {
-		Jugador j1 = new Jugador(1, "Pedro");
-		Jugador j2 = new Jugador(2, "Carlos");
-		List<Jugador> jugadores = new LinkedList<Jugador>();
-		jugadores.add(j1);
-		jugadores.add(j2);
-
-		GestionJuego gj = new GestionJuego(jugadores);
-		assertNotNull(gj.getBaraja());
-	}
-
-	@Test
-	public void testQuitarJugador() {
-		Jugador j1 = new Jugador(1, "Pedro");
-		Jugador j2 = new Jugador(2, "Carlos");
-		List<Jugador> jugadores = new LinkedList<Jugador>();
-		jugadores.add(j1);
-		jugadores.add(j2);
-		GestionJuego gj = new GestionJuego(jugadores);
-		int jugadoresAntes = gj.getJugadores().size();
-		gj.quitarJugador(j1);
-		assertEquals(jugadoresAntes - 1, gj.getJugadores().size());
-	}
-
-	@Test
-	public void iniciarPartida() {		
-		Jugador j1 = new Jugador(1, "Pedro");
-		Jugador j2 = new Jugador(2, "Carlos");
-		List<Jugador> jugadores = new LinkedList<Jugador>();
-		jugadores.add(j1);
-		jugadores.add(j2);
-		GestionJuego gj = new GestionJuego(jugadores);
-		
-		gj.iniciarPartida();
-		
-	}
-
+//	@Test
+//	public void testCrearGestionJuego() {
+//		Jugador j1 = new Jugador(1, "Pedro");
+//		Jugador j2 = new Jugador(2, "Carlos");
+//		List<Jugador> jugadores = new LinkedList<Jugador>();
+//		jugadores.add(j1);
+//		jugadores.add(j2);
+//
+//		GestionJuego gj = new GestionJuego(jugadores);
+//		assertNotNull(gj.getBaraja());
+//	}
+//
+//	@Test
+//	public void testQuitarJugador() {
+//		Jugador j1 = new Jugador(1, "Pedro");
+//		Jugador j2 = new Jugador(2, "Carlos");
+//		List<Jugador> jugadores = new LinkedList<Jugador>();
+//		jugadores.add(j1);
+//		jugadores.add(j2);
+//		GestionJuego gj = new GestionJuego(jugadores);
+//		int jugadoresAntes = gj.getJugadores().size();
+//		gj.quitarJugador(j1);
+//		assertEquals(jugadoresAntes - 1, gj.getJugadores().size());
+//	}
+//
+//	@Test
+//	public void iniciarPartida() {		
+//		Jugador j1 = new Jugador(1, "Pedro");
+//		Jugador j2 = new Jugador(2, "Carlos");
+//		List<Jugador> jugadores = new LinkedList<Jugador>();
+//		jugadores.add(j1);
+//		jugadores.add(j2);
+//		GestionJuego gj = new GestionJuego(jugadores);
+//		
+//		gj.iniciarPartida();
+//		
+//	}
+//
 //	@Test
 //	public void testCalcularGanador() {
 //		Elemento ei = new Elemento(tiposElementos.AGUA, 0);
@@ -104,5 +104,19 @@ public class GestionJuegoTest {
 //		assertEquals(9, j1.getTablero().getPuntos());
 //		assertEquals(6, j2.getTablero().getPuntos());
 //	}
+	
+	@Test
+	public void iniciarPartida() {		
+		Jugador j1 = new Jugador(1, "Pedro");
+		Jugador j2 = new Jugador(2, "Carlos");
+		List<Jugador> jugadores = new LinkedList<Jugador>();
+		jugadores.add(j1);
+		jugadores.add(j2);
+		
+		GestionJuego gj = new GestionJuego(jugadores);
+		
+		gj.iniciarPartida();
+		
+	}
 
 }

@@ -89,7 +89,7 @@ public class Ronda {
 					juegoVista.getVs().getCv().mensajeDominoElemento("Indique posición para colocar el elemento del Domino seleccionado");
 					
 					
-
+					System.out.println("Esperenado...");
 					while (PosicionTableroListener.getNumeroBoton() == botonAnte) {
 
 						try {
@@ -177,6 +177,20 @@ public class Ronda {
 					f2 = Integer.parseInt(coordenadasYder[1]);
 
 					System.out.println("(X:" + c2 + ", " + "Y:" + f2 + ")");
+					
+					//Si eligio primero derecho posiciono en el tablero primero derecho y luego izquierdo
+					if(eligioDerechoPirmero) {
+						int aux1f, aux1c, aux2f, aux2c;
+						aux1c = c1;
+						aux2c = c2;
+						c1 = c2;
+						c2 = aux1c;
+						
+						aux1f = f1;
+						aux2f = f2;
+						f1 = f2;
+						f2 = aux1f;
+					}
 					
 
 					// Se le suma uno a la posicion ya que es el elemento derecho (izquierdo mas 1
@@ -400,12 +414,15 @@ public class Ronda {
 			eleccionDomino = 4;
 			break;
 		}
-
+		
+		//Varia tamaño de mano
+		if(dominos.size()==4) {
 		jugador.setDominoSeleccionado(dominos.get(eleccionDomino - 1));
-
-		// Avisar disponibilidad de dominos
-
 		dominos.remove(eleccionDomino - 1);
+		}else {
+			jugador.setDominoSeleccionado(dominos.get(dominos.size() - (eleccionDomino - 1)));
+			dominos.remove(dominos.size() - (eleccionDomino - 1));		
+		}
 
 		// reader.close();
 	}
