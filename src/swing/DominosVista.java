@@ -28,15 +28,14 @@ public class DominosVista extends JPanel {
 
 	private String elementoIzquierdo;
 	private String elementoDerecho;
-	
+
 	List<String> elementosLista = null;
-	
-	
+
 	private JButton b1, b2, b3, b4, b5, b6, b7, b8;
 	private JButton b12, b22, b33, b44, b55, b66, b77, b88;
 	List<JButton> dominosAelegir = new ArrayList<JButton>();
 	List<JButton> dominosTablero = new ArrayList<JButton>();
-	
+
 	public DominosVista(List<Domino> mano) throws IOException {
 		setBounds(getVisibleRect());
 		setLayout(new GridLayout(4, 2));
@@ -48,7 +47,7 @@ public class DominosVista extends JPanel {
 		b6 = new JButton("6");
 		b7 = new JButton("7");
 		b8 = new JButton("8");
-		
+
 		dominosAelegir.add(b1);
 		dominosAelegir.add(b2);
 		dominosAelegir.add(b3);
@@ -57,8 +56,7 @@ public class DominosVista extends JPanel {
 		dominosAelegir.add(b6);
 		dominosAelegir.add(b7);
 		dominosAelegir.add(b8);
-		
-		
+
 		b12 = new JButton("1");
 		b22 = new JButton("2");
 		b33 = new JButton("3");
@@ -67,7 +65,7 @@ public class DominosVista extends JPanel {
 		b66 = new JButton("6");
 		b77 = new JButton("7");
 		b88 = new JButton("8");
-		
+
 		dominosTablero.add(b12);
 		dominosTablero.add(b22);
 		dominosTablero.add(b33);
@@ -77,9 +75,9 @@ public class DominosVista extends JPanel {
 		dominosTablero.add(b77);
 		dominosTablero.add(b88);
 		/*
-		dominosTablero = new ArrayList<JButton>(dominosAelegir);
-		dominosTablero.addAll(dominosAelegir);
-		*/
+		 * dominosTablero = new ArrayList<JButton>(dominosAelegir);
+		 * dominosTablero.addAll(dominosAelegir);
+		 */
 		this.mano = mano;
 		createButtonPanel();
 	}
@@ -118,68 +116,78 @@ public class DominosVista extends JPanel {
 				ruta = "DominoImg/" + this.elementosLista.get(posElem) + ".png";
 
 				Image elementoDomino = ImageIO.read(new File(ruta));
-				
+
 				Image newimg = elementoDomino.getScaledInstance(230, 220, java.awt.Image.SCALE_SMOOTH);
 				dominosAelegir.get(posElem).setIcon(new ImageIcon(newimg));
 				dominosAelegir.get(posElem).addActionListener(new BotonPulsadoListener());
-				
+
 				add(dominosAelegir.get(posElem));
-				
-				//Para colocar elemento seleccioando en tablero
+
+				// Para colocar elemento seleccioando en tablero
 				ruta_2 = "DominoImgTablero/" + this.elementosLista.get(posElem) + ".png";
-				Image elementoDominoTablero = ImageIO.read(new File(ruta_2));				
+				Image elementoDominoTablero = ImageIO.read(new File(ruta_2));
 				Image imgDominoTablero = elementoDominoTablero.getScaledInstance(58, 100, java.awt.Image.SCALE_SMOOTH);
 				dominosTablero.get(posElem).setIcon(new ImageIcon(imgDominoTablero));
-				
-								
+
 				posElem++;
 				repaint();
-				
+
 			}
-			
+
 		}
 	}
-	
-	public void recargarDominos () throws IOException {
-		createButtonPanel();
+
+	public void retiraDominoElegido(int posicionImagen) {
+
+		Image imgVacio;
+		try {
+			imgVacio = ImageIO.read(new File("DominoImg/vacio.png"));
+
+			Image newimg = imgVacio.getScaledInstance(230, 220, java.awt.Image.SCALE_SMOOTH);
+
+			this.dominosAelegir.get(posicionImagen).setIcon(new ImageIcon(newimg));
+
+			if (posicionImagen == 0 || posicionImagen % 2 == 0) {
+
+				this.dominosAelegir.get(posicionImagen + 1).setIcon(new ImageIcon(newimg));
+
+			} else {
+				this.dominosAelegir.get(posicionImagen - 1).setIcon(new ImageIcon(newimg));
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
+	public void recargarDominos() throws IOException {
+		createButtonPanel();
+	}
 
 	public List<JButton> getDominosAelegir() {
 		return dominosAelegir;
 	}
 
-
-
 	public void setDominosAelegir(List<JButton> dominosAelegir) {
 		this.dominosAelegir = dominosAelegir;
 	}
-
-
 
 	public List<JButton> getDominosTablero() {
 		return dominosTablero;
 	}
 
-
-
 	public void setDominosTablero(List<JButton> dominosTablero) {
 		this.dominosTablero = dominosTablero;
 	}
-
-
 
 	public List<Domino> getMano() {
 		return mano;
 	}
 
-
-
 	public void setMano(List<Domino> mano) {
 		this.mano = mano;
 	}
 
-	
-	
-	
 }

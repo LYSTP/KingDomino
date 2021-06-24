@@ -68,12 +68,6 @@ public class Ronda {
 				break;
 			}
 
-			// Recupero imagen elemento izquierdo de domino elegido para poder posicionar en
-			// tablero
-			// Image elemIzquierdoSelec = (Image)
-			// juegoVista.getVs().getDominoVista().getDominosAelegir().get(posicionImagen).getIcon();
-
-			juegoVista.getVs().getDominoVista().getDominosAelegir().get(posicionImagen).getIcon();
 
 			if (jugador.getDominoSeleccionado() != null) {
 				CordenadasDomino coordenadaElementoIzquierdo = new CordenadasDomino();
@@ -139,7 +133,7 @@ public class Ronda {
 
 					f1 = Integer.parseInt(coordenadasy[1]);
 
-					System.out.println("(X:" + c1 + ", " + "Y:" + f1 + ")");
+					System.out.println("(X:" + c1 + ", " + "Y:" + f1 + ")");					
 
 					// Coordenadas elemento derecho
 					juegoVista.getVs().getCv().mensajeDominoElemento("Indique posición para el elemento siguiente del Domino ");
@@ -183,6 +177,7 @@ public class Ronda {
 					f2 = Integer.parseInt(coordenadasYder[1]);
 
 					System.out.println("(X:" + c2 + ", " + "Y:" + f2 + ")");
+					
 
 					// Se le suma uno a la posicion ya que es el elemento derecho (izquierdo mas 1
 					// da el elemento derecho del domino a colocar)
@@ -289,6 +284,9 @@ public class Ronda {
 
 				jugador.getTablero().mostrarTablero();
 				
+				
+				//Quito domino elegido
+				juegoVista.getVs().getDominoVista().retiraDominoElegido(posicionImagen);				
 				//Limitamos el tablero de manera grafica
 				jugador.getTablero().limitarTablero(coordenadaElementoIzquierdo, coordenadaElementoDerecho, juegoVista, jugador);
 				
