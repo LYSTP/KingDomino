@@ -328,7 +328,7 @@ public class Ronda {
 
 		System.out.println("Turno del jugador: " + jugador.getId() + " " + jugador.getNombre());
 
-		System.out.println("|s " + dominos.size() + " dominos disponibles: \n");
+		System.out.println("Elegir uno de los " + dominos.size() + " dominos disponibles: \n");
 
 		// ver como refrescar elementos de la derecha a elegir quedan fijos no refresca
 		// pantalla
