@@ -92,8 +92,9 @@ public class Ronda {
 					System.out.println("X: ");
 
 					// Coordenadas elemento izquierdo
-					juegoVista.getVs().getCv()
-							.mensajeDominoElemento("Indique posición para colocar el elemento del Domino seleccionado");
+					juegoVista.getVs().getCv().mensajeDominoElemento("Indique posición para colocar el elemento del Domino seleccionado");
+					
+					
 
 					while (PosicionTableroListener.getNumeroBoton() == botonAnte) {
 
@@ -141,8 +142,8 @@ public class Ronda {
 					System.out.println("(X:" + c1 + ", " + "Y:" + f1 + ")");
 
 					// Coordenadas elemento derecho
-					juegoVista.getVs().getCv()
-							.mensajeDominoElemento("Indique posición para elemento derecho del Domino ");
+					juegoVista.getVs().getCv().mensajeDominoElemento("Indique posición para el elemento siguiente del Domino ");
+
 
 					System.out.println("Indique posición para elemento derecho del Domino ");
 					System.out.println("X: ");
@@ -286,10 +287,11 @@ public class Ronda {
 					}
 				} // Agregar un if para verificar disponibilidad en el tablero.
 
-				// sc_iz.close();
-				// sc_der.close();
-				// reader.close();
 				jugador.getTablero().mostrarTablero();
+				
+				//Limitamos el tablero de manera grafica
+				jugador.getTablero().limitarTablero(coordenadaElementoIzquierdo, coordenadaElementoDerecho, juegoVista, jugador);
+				
 			} else
 				System.out.println("El jugador no ha seleccionado un domino");
 

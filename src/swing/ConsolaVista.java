@@ -38,6 +38,7 @@ public class ConsolaVista extends JPanel {
 	public void mensajeDominoElemento(String string) {
 		mensajePosicion.setText("");
 		mensajePosicion.append(string);
+		this.repaint();
 	}
 
 	public void limpiaConsola() {

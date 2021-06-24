@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import clases.Elemento.tiposElementos;
+import swing.JuegoVista;
 
 public class Tablero {
 
@@ -27,7 +28,8 @@ public class Tablero {
 		}
 	}
 
-	public void limitarTablero(CordenadasDomino elementoIzquierda, CordenadasDomino elementoDerecha) {
+	public void limitarTablero(CordenadasDomino elementoIzquierda, CordenadasDomino elementoDerecha,
+			JuegoVista juegoVista, Jugador jugador) {
 
 		int minimoEnX = Math.min(elementoIzquierda.getX(), elementoDerecha.getX());
 		int maximoEnX = Math.max(elementoIzquierda.getX(), elementoDerecha.getX());
@@ -38,15 +40,35 @@ public class Tablero {
 			for (int j = 0; j < 9; j++) {
 				if (j > minimoEnX + 4) {
 					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISP, 0);
+					if (juegoVista != null && jugador!=null && jugador.getId() == 1) {
+						juegoVista.getVs().getTablero_1().setearNoDisponible(i, j);
+					} else if (juegoVista != null && jugador!=null && jugador.getId() == 2) {
+						juegoVista.getVs().getTablero_2().setearNoDisponible(i, j);
+					}
 				}
 				if (j < maximoEnX - 4) {
 					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISP, 0);
+					if (juegoVista != null && jugador!=null && jugador.getId() == 1) {
+						juegoVista.getVs().getTablero_1().setearNoDisponible(i, j);
+					} else if (juegoVista != null && jugador!=null && jugador.getId() == 2) {
+						juegoVista.getVs().getTablero_2().setearNoDisponible(i, j);
+					}
 				}
 				if (i > minimoEnY + 4) {
 					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISP, 0);
+					if (juegoVista != null && jugador!=null && jugador.getId() == 1) {
+						juegoVista.getVs().getTablero_1().setearNoDisponible(i, j);
+					} else if (juegoVista != null && jugador!=null && jugador.getId() == 2) {
+						juegoVista.getVs().getTablero_2().setearNoDisponible(i, j);
+					}
 				}
 				if (i < maximoEnY - 4) {
 					tableroJugador[j][i] = new Elemento(tiposElementos.NO_DISP, 0);
+					if (juegoVista != null && jugador!=null && jugador.getId() == 1) {
+						juegoVista.getVs().getTablero_1().setearNoDisponible(i, j);
+					} else if (juegoVista != null && jugador!=null && jugador.getId() == 2) {
+						juegoVista.getVs().getTablero_2().setearNoDisponible(i, j);
+					}
 				}
 			}
 		}
@@ -58,7 +80,7 @@ public class Tablero {
 			tableroJugador[elementoIzquierda.getX()][elementoIzquierda.getY()] = domino.getElemIzquierdo();
 			tableroJugador[elementoDerecha.getX()][elementoDerecha.getY()] = domino.getElemDerecho();
 
-			limitarTablero(elementoIzquierda, elementoDerecha);
+			limitarTablero(elementoIzquierda, elementoDerecha, null, null);
 			cantTerrenoColocado++;
 			this.cantCorona += domino.getElemDerecho().getCoronas() + domino.getElemIzquierdo().getCoronas();
 			return true;
@@ -218,6 +240,5 @@ public class Tablero {
 	public int getPuntos() {
 		return puntos;
 	}
-	
-	
+
 }

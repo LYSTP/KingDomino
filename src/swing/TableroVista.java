@@ -343,6 +343,25 @@ public class TableroVista extends JPanel {
 			}
 		}
 	}
+	
+	public void setearNoDisponible(int i, int j) {
+		
+		Image imgNoDispo;
+		try {
+			imgNoDispo = ImageIO.read(new File("DominoImgTablero/No_Disponible.png"));
+
+		Image imgNoDisponible= imgNoDispo.getScaledInstance(58, 100, java.awt.Image.SCALE_SMOOTH);
+		
+		String cordenada = j + ", " + i;
+		
+		posicionTablero.get(Integer.parseInt(mapPosiciones.get(cordenada))).setIcon(new ImageIcon(imgNoDisponible));
+		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		
+	}
 
 	public List<JButton> getPosicionTablero() {
 		return posicionTablero;
