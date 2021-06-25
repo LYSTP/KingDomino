@@ -42,14 +42,16 @@ public class GestionJuego {
 				esPrimeraRonda=false;
 				setRepartido(false);
 			}
+			
+			// finaliza la partida
+			obtenerGanador(calcularPuntajes(),juegoVista);
 		
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			// finaliza la partida
-			obtenerGanador(calcularPuntajes());
+
 			
 		} else
 			System.out.println("Cantidad de jugadores no valida.");
@@ -66,7 +68,7 @@ public class GestionJuego {
 		return puntajesFinales;
 	}
 
-	private List<Jugador> obtenerGanador(List<Integer> puntajesFinales) {
+	private List<Jugador> obtenerGanador(List<Integer> puntajesFinales, JuegoVista juegoVista) {
 		List<Integer> ganaPorPuntos = obtenerGanadoresPorPuntos(puntajesFinales);
 		List<Jugador> ganadores = new ArrayList<Jugador>(jugadores.size());
 
@@ -100,8 +102,12 @@ public class GestionJuego {
 			System.out.println(jugadores.get(ganadoresPorTerreno.get(i)).getNombre());
 			ganadores.add(jugadores.get(ganadoresPorTerreno.get(i)));
 		}
+		
+		juegoVista.getVs().getCv().mostrarGanador(ganadores);
 
 		return ganadores;
+		
+
 	}
 
 	private List<Integer> obtenerGanadoresPorPuntos(List<Integer> puntajesFinales) {

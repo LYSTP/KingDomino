@@ -348,7 +348,7 @@ public class Ronda {
 		 * juegoVista.getVs().repaint();
 		 */
 
-		juegoVista.getVs().getCv().jugadorTurno(jugador);
+		juegoVista.getVs().getCv().jugadorTurno(jugador, baraja);
 
 		int i = 0;
 		for (Domino domino : dominos) {
