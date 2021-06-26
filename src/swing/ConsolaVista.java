@@ -26,7 +26,7 @@ public class ConsolaVista extends JPanel {
 		bSaltearTurno.addActionListener(new SalteaTurnoListener());
 		add(textArea_1);
 		add(mensajePosicion);
-		//add(bSaltearTurno);
+		add(bSaltearTurno);
 		textArea_1.setEditable(false);
 		mensajePosicion.setEditable(false);
 	}

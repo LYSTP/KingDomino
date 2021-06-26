@@ -18,7 +18,7 @@ public class Ronda {
 	private static int eleccionDomino = 0;
 	private static int eleccionDoominoNumeroElemen = 0;
 	private static List<Domino> dominos = new ArrayList<Domino>();
-	private static int cantidadJugadas = 0;
+	public static int cantidadJugadas = 0;
 
 	public static void nuevaRonda(List<Jugador> jugadores, List<Domino> mano, Baraja baraja, JuegoVista juegoVista,
 			boolean esPrimeraRonda, GestionJuego gestionJuego) {
@@ -372,7 +372,7 @@ public class Ronda {
 		// Para saber si eligio otro domino o aun no
 		String anterior = BotonPulsadoListener.getNumeroBoton();
 
-		System.out.println("Anteriro:" + anterior + "Actual" + BotonPulsadoListener.getNumeroBoton());
+		System.out.println("Anterior:" + anterior + "Actual" + BotonPulsadoListener.getNumeroBoton());
 		// Para parte grafica se espera que seleccione un domino
 		while (BotonPulsadoListener.getNumeroBoton() == anterior) {
 
