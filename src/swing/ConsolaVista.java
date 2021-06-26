@@ -28,7 +28,7 @@ public class ConsolaVista extends JPanel {
 		bSaltearTurno.addActionListener(new SalteaTurnoListener());
 		add(textArea_1);
 		add(mensajePosicion);
-		add(mensajeGanador);
+		//add(mensajeGanador);
 		//add(bSaltearTurno);
 		textArea_1.setEditable(false);
 		mensajePosicion.setEditable(false);
@@ -61,6 +61,7 @@ public class ConsolaVista extends JPanel {
 	public void mostrarGanador(List<Jugador> ganadores) {
 		if (ganadores != null && !ganadores.isEmpty()) {
 			mensajeGanador.append("El ganador es: " + ganadores.get(0));
+			add(mensajeGanador);
 		}
 	}
 

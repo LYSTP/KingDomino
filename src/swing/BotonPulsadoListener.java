@@ -11,6 +11,7 @@ public class BotonPulsadoListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Has pulsado el botón " + e.getActionCommand());
 		numeroBoton = e.getActionCommand();
+
 	}
 
 	public static String getNumeroBoton() {
@@ -19,6 +20,10 @@ public class BotonPulsadoListener implements ActionListener {
 
 	public void setNumeroBoton(String numeroBoton) {
 		this.numeroBoton = numeroBoton;
+	}
+
+	public static void reset() {
+		numeroBoton = null;	
 	}
 
 }

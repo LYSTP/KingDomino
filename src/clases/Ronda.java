@@ -18,6 +18,7 @@ public class Ronda {
 	private static int eleccionDomino = 0;
 	private static int eleccionDoominoNumeroElemen = 0;
 	private static List<Domino> dominos = new ArrayList<Domino>();
+	private static int cantidadJugadas = 0;
 
 	public static void nuevaRonda(List<Jugador> jugadores, List<Domino> mano, Baraja baraja, JuegoVista juegoVista,
 			boolean esPrimeraRonda, GestionJuego gestionJuego) {
@@ -34,7 +35,8 @@ public class Ronda {
 			jugador.getTablero().mostrarTablero();
 			System.out.println();
 
-			//Turno
+			cantidadJugadas++;
+			// Turno
 			turnoJugador(jugador, mano, baraja, juegoVista, esPrimeraRonda, gestionJuego);
 
 			System.out.println("Eligio el Domino: " + eleccionDomino);
@@ -68,7 +70,6 @@ public class Ronda {
 				break;
 			}
 
-
 			if (jugador.getDominoSeleccionado() != null) {
 				CordenadasDomino coordenadaElementoIzquierdo = new CordenadasDomino();
 				CordenadasDomino coordenadaElementoDerecho = new CordenadasDomino();
@@ -86,9 +87,9 @@ public class Ronda {
 					System.out.println("X: ");
 
 					// Coordenadas elemento izquierdo
-					juegoVista.getVs().getCv().mensajeDominoElemento("Indique posición para colocar el elemento del Domino seleccionado");
-					
-					
+					juegoVista.getVs().getCv()
+							.mensajeDominoElemento("Indique posición para colocar el elemento del Domino seleccionado");
+
 					System.out.println("Esperenado...");
 					while (PosicionTableroListener.getNumeroBoton() == botonAnte) {
 
@@ -133,10 +134,11 @@ public class Ronda {
 
 					f1 = Integer.parseInt(coordenadasy[1]);
 
-					System.out.println("(X:" + c1 + ", " + "Y:" + f1 + ")");					
+					System.out.println("(X:" + c1 + ", " + "Y:" + f1 + ")");
 
 					// Coordenadas elemento derecho
-					juegoVista.getVs().getCv().mensajeDominoElemento("Indique posición para el elemento siguiente del Domino ");
+					juegoVista.getVs().getCv()
+							.mensajeDominoElemento("Indique posición para el elemento siguiente del Domino ");
 
 					System.out.println("Esperenado...");
 					System.out.println("Indique posición para elemento derecho del Domino ");
@@ -177,21 +179,21 @@ public class Ronda {
 					f2 = Integer.parseInt(coordenadasYder[1]);
 
 					System.out.println("(X:" + c2 + ", " + "Y:" + f2 + ")");
-					
-					//Si eligio primero derecho posiciono en el tablero primero derecho y luego izquierdo
-					if(eligioDerechoPirmero) {
+
+					// Si eligio primero derecho posiciono en el tablero primero derecho y luego
+					// izquierdo
+					if (eligioDerechoPirmero) {
 						int aux1f, aux1c, aux2f, aux2c;
 						aux1c = c1;
 						aux2c = c2;
 						c1 = c2;
 						c2 = aux1c;
-						
+
 						aux1f = f1;
 						aux2f = f2;
 						f1 = f2;
 						f2 = aux1f;
 					}
-					
 
 					// Se le suma uno a la posicion ya que es el elemento derecho (izquierdo mas 1
 					// da el elemento derecho del domino a colocar)
@@ -297,13 +299,19 @@ public class Ronda {
 				} // Agregar un if para verificar disponibilidad en el tablero.
 
 				jugador.getTablero().mostrarTablero();
-				
-				
-				//Quito domino elegido
-				juegoVista.getVs().getDominoVista().retiraDominoElegido(posicionImagen);				
-				//Limitamos el tablero de manera grafica
-				jugador.getTablero().limitarTablero(coordenadaElementoIzquierdo, coordenadaElementoDerecho, juegoVista, jugador);
-				
+
+				// Quito domino elegido
+				juegoVista.getVs().getDominoVista().retiraDominoElegido(posicionImagen);
+				// Limitamos el tablero de manera grafica
+				jugador.getTablero().limitarTablero(coordenadaElementoIzquierdo, coordenadaElementoDerecho, juegoVista,
+						jugador);
+
+				// Para saber si presiono boton para elegir domino
+				if (gestionJuego.jugadores.size() == cantidadJugadas) {
+					BotonPulsadoListener.reset();
+					cantidadJugadas = 0;
+				}
+
 			} else
 				System.out.println("El jugador no ha seleccionado un domino");
 
@@ -314,7 +322,7 @@ public class Ronda {
 	private static void turnoJugador(Jugador jugador, List<Domino> mano, Baraja baraja, JuegoVista juegoVista,
 			boolean esPrimeraRonda, GestionJuego gestionJuego) {
 
-		//List<Domino> dominos = new ArrayList<Domino>();
+		// List<Domino> dominos = new ArrayList<Domino>();
 
 		// En la primera ronda ya reparti fuera en la vista
 		if (esPrimeraRonda) {
@@ -336,7 +344,9 @@ public class Ronda {
 			juegoVista.getVs().getDominoVista().setMano(dominos);
 
 			try {
-				juegoVista.getVs().getDominoVista().recargarDominos();
+				if (cantidadJugadas <= 1) {
+					juegoVista.getVs().getDominoVista().recargarDominos();
+				}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -356,12 +366,13 @@ public class Ronda {
 			System.out.println(i + ")" + domino.toString());
 		}
 		System.out.println();
-		
+
 		System.out.println("Esperando seleccion de Domino...  \n");
-		
+
 		// Para saber si eligio otro domino o aun no
 		String anterior = BotonPulsadoListener.getNumeroBoton();
 
+		System.out.println("Anteriro:" + anterior + "Actual" + BotonPulsadoListener.getNumeroBoton());
 		// Para parte grafica se espera que seleccione un domino
 		while (BotonPulsadoListener.getNumeroBoton() == anterior) {
 
@@ -374,7 +385,7 @@ public class Ronda {
 
 		}
 
-		Integer.parseInt(BotonPulsadoListener.getNumeroBoton());
+		// Integer.parseInt(BotonPulsadoListener.getNumeroBoton());
 		System.out.println("ok");
 
 //		int entrada = reader.nextInt();
@@ -416,14 +427,14 @@ public class Ronda {
 			eleccionDomino = 4;
 			break;
 		}
-		
-		//Varia tamaño de mano
-		if(dominos.size()==4 || (eleccionDomino - 1) == 0) {
-		jugador.setDominoSeleccionado(dominos.get(eleccionDomino - 1));
-		dominos.remove(eleccionDomino - 1);
-		}else {
+
+		// Varia tamaño de mano
+		if (dominos.size() == 4 || (eleccionDomino - 1) == 0) {
+			jugador.setDominoSeleccionado(dominos.get(eleccionDomino - 1));
+			// dominos.remove(eleccionDomino - 1);
+		} else {
 			jugador.setDominoSeleccionado(dominos.get(dominos.size() - (eleccionDomino - 1)));
-			dominos.remove(dominos.size() - (eleccionDomino - 1));		
+			// dominos.remove(dominos.size() - (eleccionDomino - 1));
 		}
 
 		// reader.close();
