@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -13,22 +14,18 @@ import clases.Jugador;
 public class ConsolaVista extends JPanel {
 	private JTextArea textArea_1;
 	private JTextArea mensajePosicion;
-	private JTextArea mensajeGanador;
 	private JButton bSaltearTurno;
 
 	public ConsolaVista() throws IOException {
 		textArea_1 = new JTextArea();
 		mensajePosicion = new JTextArea();
-		mensajeGanador = new JTextArea();
 		bSaltearTurno = new JButton("Saltear Turno");
 		setBounds(getVisibleRect());
 		textArea_1.setBounds(197, 54, 488, 297);
 		mensajePosicion.setBounds(197, 84, 488, 297);
-		mensajeGanador.setBounds(197, 104, 488, 297);
 		bSaltearTurno.addActionListener(new SalteaTurnoListener());
 		add(textArea_1);
 		add(mensajePosicion);
-		//add(mensajeGanador);
 		//add(bSaltearTurno);
 		textArea_1.setEditable(false);
 		mensajePosicion.setEditable(false);
@@ -59,10 +56,9 @@ public class ConsolaVista extends JPanel {
 	}
 
 	public void mostrarGanador(List<Jugador> ganadores) {
-		if (ganadores != null && !ganadores.isEmpty()) {
-			mensajeGanador.append("El ganador es: " + ganadores.get(0));
-			add(mensajeGanador);
-		}
+		JOptionPane.showMessageDialog(this, "El ganador es el jugador: " + ganadores.get(0).getNombre() + " con " + ganadores.get(0).getTablero().getPuntos() + " puntos");		
 	}
+	
+	
 
 }

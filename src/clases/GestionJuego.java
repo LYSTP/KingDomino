@@ -44,7 +44,8 @@ public class GestionJuego {
 			}
 			
 			// finaliza la partida
-			obtenerGanador(calcularPuntajes(),juegoVista);
+			juegoVista.getVs().getCv().mostrarGanador(obtenerGanador(calcularPuntajes()));
+			
 		
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -68,7 +69,7 @@ public class GestionJuego {
 		return puntajesFinales;
 	}
 
-	private List<Jugador> obtenerGanador(List<Integer> puntajesFinales, JuegoVista juegoVista) {
+	private List<Jugador> obtenerGanador(List<Integer> puntajesFinales) {
 		List<Integer> ganaPorPuntos = obtenerGanadoresPorPuntos(puntajesFinales);
 		List<Jugador> ganadores = new ArrayList<Jugador>(jugadores.size());
 
@@ -102,8 +103,6 @@ public class GestionJuego {
 			System.out.println(jugadores.get(ganadoresPorTerreno.get(i)).getNombre());
 			ganadores.add(jugadores.get(ganadoresPorTerreno.get(i)));
 		}
-		
-		juegoVista.getVs().getCv().mostrarGanador(ganadores);
 
 		return ganadores;
 		
