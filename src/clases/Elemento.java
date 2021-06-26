@@ -4,13 +4,20 @@ public class Elemento implements Comparable<Elemento> {
 
 	private String descripcion;
 	private int coronas;
+	boolean computado = false;  /// Si ya se calculo el puntaje.
 
 	private Elemento elemIzquierda;
 	private Elemento elemDerecha;
 	private Elemento elemArriba;
-	
+
 	public String getDescripcion() {
 		return descripcion;
+	}
+
+	// Agregado 23/05
+	// Elemento deberia recibir el tipo y cantidad de coronas y no una descripcion
+	public enum tiposElementos {
+		CASTILLO, PASTIZAL, AGUA, CESPED, BOSQUE, MINA, TIERRA, CORONA, VACIO, NO_DISP
 	}
 
 	public void setDescripcion(String descripcion) {
@@ -19,8 +26,8 @@ public class Elemento implements Comparable<Elemento> {
 
 	private Elemento elemAbajo;
 
-	public Elemento(String descripcion, int coronas) {
-		this.descripcion = descripcion;
+	public Elemento(tiposElementos tipo, int coronas) {
+		this.descripcion = tipo.toString();
 		this.coronas = coronas;
 		this.elemAbajo = null;
 		this.elemDerecha = null;
@@ -92,7 +99,7 @@ public class Elemento implements Comparable<Elemento> {
 
 	@Override
 	public int compareTo(Elemento elemento) {
-		if (elemento.getDescripcion().equals("Castillo"))
+		if (elemento.getDescripcion().equals(tiposElementos.CASTILLO.toString()))
 			return 0;
 
 		return this.descripcion.compareTo(elemento.descripcion);
@@ -110,4 +117,13 @@ public class Elemento implements Comparable<Elemento> {
 	public int getCoronas() {
 		return coronas;
 	}
+
+	public boolean isComputado() {
+		return computado;
+	}
+
+	public void setComputado(boolean computado) {
+		this.computado = computado;
+	}
+
 }

@@ -43,8 +43,8 @@ public class Domino implements Comparable<Domino> {
 		return elemDerecho;
 	}
 
-	public int getNumero() {
-		return numero;
+	public Integer getNumero() {
+		return (Integer) numero;
 	}
 
 	public void setNumero(int numero) {
@@ -53,7 +53,8 @@ public class Domino implements Comparable<Domino> {
 
 	@Override
 	public String toString() {
-		return elemIzquierdo.toString() + " + " + elemDerecho.toString();
+		return elemIzquierdo.toString() + "(" + elemIzquierdo.getCoronas() + " Coronas)" + " + "
+				+ elemDerecho.toString() + "(" + elemDerecho.getCoronas() + " Coronas)";
 	}
 
 	@Override
