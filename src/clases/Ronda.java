@@ -311,6 +311,13 @@ public class Ronda {
 					BotonPulsadoListener.reset();
 					cantidadJugadas = 0;
 				}
+				
+				//Limpia rotulo Turno
+				if (jugador.getId() == 1) {
+					juegoVista.getVs().getTablero_1().jugadorFinTurno(jugador);
+				} else {
+					juegoVista.getVs().getTablero_2().jugadorFinTurno(jugador);
+				}
 
 			} else
 				System.out.println("El jugador no ha seleccionado un domino");
@@ -359,6 +366,14 @@ public class Ronda {
 		 */
 
 		juegoVista.getVs().getCv().jugadorTurno(jugador, baraja);
+
+		if (jugador.getId() == 1) {
+			juegoVista.getVs().getTablero_1().jugadorTurno(jugador);
+		} else {
+			juegoVista.getVs().getTablero_2().jugadorTurno(jugador);
+		}
+		
+		juegoVista.getVs().getDominoVista().cantidadBaraja(baraja);
 
 		int i = 0;
 		for (Domino domino : dominos) {

@@ -1,11 +1,14 @@
 package swing;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 
 import clases.Domino;
 import clases.Jugador;
@@ -22,10 +25,17 @@ public class VentanaSala extends JPanel {
 	public VentanaSala(List<Domino> mano, List<Jugador> jugadores) throws IOException {
 		setBorder(BorderFactory.createEmptyBorder(50, 10, 50, 10));
 		setLayout(new GridLayout(1, 4, 50, 50));
+		
+        Border empty = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+        Border blackLine = BorderFactory.createLineBorder(Color.black);
+        CompoundBorder line = new CompoundBorder(empty, blackLine);
+        Border grid1Border = BorderFactory.createTitledBorder(line, "KINGDOMINO");
+        setBorder(grid1Border);
+		
 		add(tablero_1 = new TableroVista(jugadores.get(0)));
 		add(tablero_2 = new TableroVista(jugadores.get(1)));
 		add(setDominoVista(new DominosVista(mano)));
-		add(cv);
+		//add(cv);
 	}
 
 	public ConsolaVista getCv() {

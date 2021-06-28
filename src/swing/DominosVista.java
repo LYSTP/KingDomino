@@ -14,12 +14,18 @@ import java.util.List;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 
+import clases.Baraja;
 import clases.Domino;
+import clases.Jugador;
 
 public class DominosVista extends JPanel {
 
@@ -35,6 +41,8 @@ public class DominosVista extends JPanel {
 	private JButton b12, b22, b33, b44, b55, b66, b77, b88;
 	List<JButton> dominosAelegir = new ArrayList<JButton>();
 	List<JButton> dominosTablero = new ArrayList<JButton>();
+
+	private static Border grid1Border;
 
 	public DominosVista(List<Domino> mano) throws IOException {
 		setBounds(getVisibleRect());
@@ -78,8 +86,17 @@ public class DominosVista extends JPanel {
 		 * dominosTablero = new ArrayList<JButton>(dominosAelegir);
 		 * dominosTablero.addAll(dominosAelegir);
 		 */
+
+		Border empty = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+		Border blackLine = BorderFactory.createLineBorder(Color.black);
+		CompoundBorder line = new CompoundBorder(empty, blackLine);
+
+		grid1Border = BorderFactory.createTitledBorder(line, "Dominos Disponibles");
+
 		this.mano = mano;
 		createButtonPanel();
+
+		setBorder(grid1Border);
 	}
 
 	public void cargarDominosDisponibles(List<Domino> mano) {
@@ -117,7 +134,7 @@ public class DominosVista extends JPanel {
 
 				Image elementoDomino = ImageIO.read(new File(ruta));
 
-				Image newimg = elementoDomino.getScaledInstance(230, 220, java.awt.Image.SCALE_SMOOTH);
+				Image newimg = elementoDomino.getScaledInstance(310, 240, java.awt.Image.SCALE_SMOOTH);
 				dominosAelegir.get(posElem).setIcon(new ImageIcon(newimg));
 				dominosAelegir.get(posElem).addActionListener(new BotonPulsadoListener());
 
@@ -126,7 +143,7 @@ public class DominosVista extends JPanel {
 				// Para colocar elemento seleccioando en tablero
 				ruta_2 = "DominoImgTablero/" + this.elementosLista.get(posElem) + ".png";
 				Image elementoDominoTablero = ImageIO.read(new File(ruta_2));
-				Image imgDominoTablero = elementoDominoTablero.getScaledInstance(58, 100, java.awt.Image.SCALE_SMOOTH);
+				Image imgDominoTablero = elementoDominoTablero.getScaledInstance(100, 110, java.awt.Image.SCALE_SMOOTH);
 				dominosTablero.get(posElem).setIcon(new ImageIcon(imgDominoTablero));
 
 				posElem++;
@@ -143,7 +160,7 @@ public class DominosVista extends JPanel {
 		try {
 			imgVacio = ImageIO.read(new File("DominoImg/vacio.png"));
 
-			Image newimg = imgVacio.getScaledInstance(230, 220, java.awt.Image.SCALE_SMOOTH);
+			Image newimg = imgVacio.getScaledInstance(310, 240, java.awt.Image.SCALE_SMOOTH);
 
 			this.dominosAelegir.get(posicionImagen).setIcon(new ImageIcon(newimg));
 
@@ -160,6 +177,21 @@ public class DominosVista extends JPanel {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void cantidadBaraja(Baraja baraja) {
+
+		Border empty = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+		Border blackLine = BorderFactory.createLineBorder(Color.black);
+		CompoundBorder line = new CompoundBorder(empty, blackLine);
+
+		grid1Border = BorderFactory.createTitledBorder(line, "Dominos Disponibles" + " | " + "Dominos en baraja: " + baraja.getSizeDominos());
+
+		setBorder(grid1Border);
+	}
+	
+	public void mostrarGanador(List<Jugador> ganadores) {
+		JOptionPane.showMessageDialog(this, "El ganador es el jugador: " + ganadores.get(0).getNombre() + " con " + ganadores.get(0).getTablero().getPuntos() + " puntos");		
 	}
 
 	public void recargarDominos() throws IOException {

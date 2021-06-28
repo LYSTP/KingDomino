@@ -7,7 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 
+import clases.Baraja;
 import clases.Jugador;
 
 import java.awt.GridLayout;
@@ -17,6 +20,7 @@ import java.awt.Dimension;
 import java.awt.GridBagLayout;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -38,13 +42,14 @@ public class TableroVista extends JPanel {
 			b65, b66, b67, b68, b69, b70, b71, b72, b73, b74, b75, b76, b77, b78, b79, b80, b81;
 
 	List<JButton> posicionTablero = new ArrayList<JButton>();
-	
+
 	Map<String, String> mapPosiciones = new HashMap<String, String>();
 
-	public TableroVista(Jugador jugador) throws IOException {
-		setBackground(Color.BLACK);
+	private static Border grid1Border;
 
-		
+	public TableroVista(Jugador jugador) throws IOException {
+		// setBackground(Color.BLACK);
+
 		mapPosiciones.put("0, 0", "0");
 		mapPosiciones.put("0, 1", "1");
 		mapPosiciones.put("0, 2", "2");
@@ -307,6 +312,18 @@ public class TableroVista extends JPanel {
 		posicionTablero.add(b80);
 		posicionTablero.add(b81);
 
+		Border empty = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+		Border blackLine = BorderFactory.createLineBorder(Color.black);
+		CompoundBorder line = new CompoundBorder(empty, blackLine);
+
+		grid1Border = BorderFactory.createTitledBorder(line,
+				"Tablero del jugador: " + jugador.getId() + " " + jugador.getNombre());
+
+		setLayout(new GridLayout(9, 9));
+		setSize(new Dimension(100, 10));
+		createButtonPanel();
+		setBorder(grid1Border);
+
 		setLayout(new GridLayout(9, 9));
 		setSize(new Dimension(100, 10));
 		createButtonPanel();
@@ -315,8 +332,8 @@ public class TableroVista extends JPanel {
 	public void createButtonPanel() throws IOException {
 		Image imgCastillo = ImageIO.read(new File("DominoImg/castillo.png"));
 		Image imgVacio = ImageIO.read(new File("DominoImg/vacio.png"));
-		Image newimgCastillo = imgCastillo.getScaledInstance(58, 100, java.awt.Image.SCALE_SMOOTH);
-		Image newimgVacio = imgVacio.getScaledInstance(58, 95, java.awt.Image.SCALE_SMOOTH);
+		Image newimgCastillo = imgCastillo.getScaledInstance(100, 110, java.awt.Image.SCALE_SMOOTH);
+		Image newimgVacio = imgVacio.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
 
 		// Color cuando se hace focus en algun elemento del tipo button, cuando hace
 		// click con el mouse
@@ -343,24 +360,49 @@ public class TableroVista extends JPanel {
 			}
 		}
 	}
-	
+
 	public void setearNoDisponible(int i, int j) {
-		
+
 		Image imgNoDispo;
 		try {
 			imgNoDispo = ImageIO.read(new File("DominoImgTablero/No_Disponible.png"));
 
-		Image imgNoDisponible= imgNoDispo.getScaledInstance(58, 100, java.awt.Image.SCALE_SMOOTH);
-		
-		String cordenada = j + ", " + i;
-		
-		posicionTablero.get(Integer.parseInt(mapPosiciones.get(cordenada))).setIcon(new ImageIcon(imgNoDisponible));
-		
+			Image imgNoDisponible = imgNoDispo.getScaledInstance(75, 110, java.awt.Image.SCALE_SMOOTH);
+
+			String cordenada = j + ", " + i;
+
+			posicionTablero.get(Integer.parseInt(mapPosiciones.get(cordenada))).setIcon(new ImageIcon(imgNoDisponible));
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
-		
+		}
+
+	}
+
+	public void jugadorTurno(Jugador jugador) {
+
+		Border empty = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+		Border greenLine = BorderFactory.createLineBorder(Color.GREEN,2);
+		CompoundBorder line = new CompoundBorder(empty, greenLine);
+
+		grid1Border = BorderFactory.createTitledBorder(line,
+				"Tablero del jugador: " + jugador.getId() + " " + jugador.getNombre() + " | " + " Turno");
+
+		setBorder(grid1Border);
+	}
+	
+	//Limpia rotulo Turno
+	public void jugadorFinTurno(Jugador jugador) {
+
+		Border empty = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+		Border blackLine = BorderFactory.createLineBorder(Color.black);
+		CompoundBorder line = new CompoundBorder(empty, blackLine);
+
+		grid1Border = BorderFactory.createTitledBorder(line,
+				"Tablero del jugador: " + jugador.getId() + " " + jugador.getNombre());
+
+		setBorder(grid1Border);
 	}
 
 	public List<JButton> getPosicionTablero() {

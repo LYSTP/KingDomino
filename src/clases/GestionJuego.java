@@ -44,7 +44,8 @@ public class GestionJuego {
 			}
 			
 			// finaliza la partida
-			juegoVista.getVs().getCv().mostrarGanador(obtenerGanador(calcularPuntajes()));
+			//juegoVista.getVs().getCv().mostrarGanador(obtenerGanador(calcularPuntajes()));
+			juegoVista.getVs().getDominoVista().mostrarGanador(obtenerGanador(calcularPuntajes()));
 			
 		
 			} catch (IOException e) {
